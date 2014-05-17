@@ -9,15 +9,15 @@
     <title>Start Bootstrap - SB Admin Version 2.0 Demo</title>
 
     <!-- Core CSS - Include with every page -->
-    <link href="{{asset('packages/sion/admin/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('packages/sion/admin/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <!-- Page-Level Plugin CSS - Dashboard -->
-    <link href="{{asset('packages/sion/admin/css/plugins/morris/morris-0.4.3.min.css')}}" rel="stylesheet">
-    <link href="{{asset('packages/sion/admin/css/plugins/timeline/timeline.css')}}" rel="stylesheet">
+    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+    <link href="css/plugins/timeline/timeline.css" rel="stylesheet">
 
     <!-- SB Admin CSS - Include with every page -->
-    <link href="{{asset('packages/sion/admin/css/sb-admin.css')}}" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
 
 </head>
 
@@ -721,7 +721,6 @@
                             </div>
                         </div>
                         <!-- /.panel-heading -->
-                        @section('body')
                         <div class="panel-body">
                             <ul class="chat">
                                 <li class="left clearfix">
@@ -788,8 +787,6 @@
                             </ul>
                         </div>
                         <!-- /.panel-body -->
-                        @show
-                        @section('sidebar')
                         <div class="panel-footer">
                             <div class="input-group">
                                 <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
@@ -801,7 +798,6 @@
                             </div>
                         </div>
                         <!-- /.panel-footer -->
-                        @show
                     </div>
                     <!-- /.panel .chat-panel -->
                 </div>
@@ -815,19 +811,19 @@
     <!-- /#wrapper -->
 
     <!-- Core Scripts - Include with every page -->
-    <script src="{{asset('packages/sion/admin/js/jquery-1.10.2.js')}}"></script>
-    <script src="{{asset('packages/sion/admin/js/bootstrap.min.js')}}"></script>
-    <script src="packages/sion/admin/js//plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
 
     <!-- Page-Level Plugin Scripts - Dashboard -->
-    <script src="packages/sion/admin/js//plugins/morris/raphael-2.1.0.min.js"></script>
-    <script src="packages/sion/admin/js//plugins/morris/morris.js"></script>
+    <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="js/plugins/morris/morris.js"></script>
 
     <!-- SB Admin Scripts - Include with every page -->
-    <script src="packages/sion/admin/js//sb-admin.js"></script>
+    <script src="js/sb-admin.js"></script>
 
     <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
-    <script src="packages/sion/admin/js/demo/dashboard-demo.js"></script>
+    <script src="js/demo/dashboard-demo.js"></script>
 
 </body>
 

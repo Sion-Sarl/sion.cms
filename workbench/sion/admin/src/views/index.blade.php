@@ -1,1 +1,1 @@
-hello, world
+@extends('admin::layouts.master')

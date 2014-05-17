@@ -17,7 +17,8 @@
     "autoload": {
         "classmap": [
             "src/migrations",
-            "src/controllers/AdminController.php"
+            "src/controllers/AdminController.php",
+            "src/seeds"
         ],
         "psr-0": {
             "Sion\\Admin\\": "src/"

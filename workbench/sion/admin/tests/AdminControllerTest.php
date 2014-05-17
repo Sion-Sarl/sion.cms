@@ -3,7 +3,7 @@
 class AdminControllerTest extends TestCase {
 
 	/**
-	 * A basic functional test example.
+	 * Admin test index
 	 *
 	 * @return void
 	 */
@@ -17,5 +17,9 @@ class AdminControllerTest extends TestCase {
         
 		$this->assertTrue($this->client->getResponse()->isOk());
 	}
+    public function testLogin()
+    {
+        
+    }
 
 }
