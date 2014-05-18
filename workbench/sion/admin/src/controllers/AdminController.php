@@ -17,17 +17,20 @@ class AdminController extends \BaseController {
 	public function getIndex()
 	{
 		//
-        return View::make("admin::index");
+           return View::make("admin::index");
 	}
-    public function getLogin()
-    {
-        return View::make("admin::login");
-    }
-    public function postLogin()
-    {
-        if (!Auth::attempt(array('email' => Input::get('email'), 'password' =>  Input::get('password'))))
+        public function getLogin()
         {
-            return Redirect::intended('AdminController@getLogin')->withInput()->with("erreur","Mot de passe ou pseudo incorrect");
+            return View::make("admin::login");
         }
-    }
+        public function postLogin()
+        {
+            if (!Auth::attempt(array('email' => Input::get('email'), 'password' =>  Input::get('password'))))
+            {
+               return Redirect::action('AdminController@getLogin')->with("erreur","Mot de passe ou pseudo incorrect");
+            }
+            else {
+               return Redirect::action('AdminController@getIndex');
+            }
+        }
 }
