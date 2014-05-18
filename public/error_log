@@ -1,5 +1,0 @@
-[17-May-2014 04:28:54 UTC] PHP Fatal error:  Class 'Sion\Admin\Route' not found in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/src/Sion/Admin/AdminServiceProvider.php on line 23
-[17-May-2014 04:54:16 UTC] PHP Fatal error:  Class 'Sion\Admin\Auth' not found in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/src/Sion/Admin/AdminServiceProvider.php on line 23
-[17-May-2014 04:54:27 UTC] PHP Fatal error:  Class 'Sion\Admin\Redirect' not found in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/src/Sion/Admin/AdminServiceProvider.php on line 27
-[17-May-2014 04:54:30 UTC] PHP Fatal error:  Class 'Sion\Admin\Redirect' not found in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/src/Sion/Admin/AdminServiceProvider.php on line 27
-[17-May-2014 05:06:38 UTC] PHP Fatal error:  Call to undefined method Illuminate\Routing\UrlGenerator::to_asset() in /home/sionnea/public_html/DEV/_sion/cms/bootstrap/compiled.php on line 3155
