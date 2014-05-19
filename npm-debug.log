@@ -1,0 +1,321 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'buster' ]
+2 info using npm@1.3.8
+3 info using node@v0.10.17
+4 verbose cache add [ 'buster', null ]
+5 verbose cache add name=undefined spec="buster" args=["buster",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'buster',
+6 verbose parsed url   path: 'buster',
+6 verbose parsed url   href: 'buster' }
+7 silly lockFile 1999e489-buster buster
+8 verbose lock buster /home/sionnea/.npm/1999e489-buster.lock
+9 silly lockFile 1999e489-buster buster
+10 silly lockFile 1999e489-buster buster
+11 verbose addNamed [ 'buster', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile d441bf1e-buster buster@
+14 verbose lock buster@ /home/sionnea/.npm/d441bf1e-buster.lock
+15 silly addNameRange { name: 'buster', range: '*', hasData: false }
+16 verbose url raw buster
+17 verbose url resolving [ 'https://registry.npmjs.org/', './buster' ]
+18 verbose url resolved https://registry.npmjs.org/buster
+19 info trying registry request attempt 1 at 09:52:38
+20 http GET https://registry.npmjs.org/buster
+21 http 200 https://registry.npmjs.org/buster
+22 silly registry.get cb [ 200,
+22 silly registry.get   { date: 'Sun, 18 May 2014 22:52:40 GMT',
+22 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+22 silly registry.get     etag: '"CJIX9JCJ5PFMSSW4KHIF0CJQL"',
+22 silly registry.get     'content-type': 'application/json',
+22 silly registry.get     via: '1.1 varnish',
+22 silly registry.get     'cache-control': 'max-age=1',
+22 silly registry.get     'content-length': '77437',
+22 silly registry.get     'accept-ranges': 'bytes',
+22 silly registry.get     age: '1418',
+22 silly registry.get     'x-served-by': 'cache-v37-ASH, cache-syd1623-SYD',
+22 silly registry.get     'x-cache': 'MISS, MISS',
+22 silly registry.get     'x-cache-hits': '0, 0',
+22 silly registry.get     'x-timer': 'S1400453559.883066177,VS0,VS117,VE212,VE561',
+22 silly registry.get     vary: 'Accept',
+22 silly registry.get     'keep-alive': 'timeout=10, max=50',
+22 silly registry.get     connection: 'Keep-Alive' } ]
+23 silly addNameRange number 2 { name: 'buster', range: '*', hasData: true }
+24 silly addNameRange versions [ 'buster',
+24 silly addNameRange   [ '0.2.0',
+24 silly addNameRange     '0.2.1',
+24 silly addNameRange     '0.2.2',
+24 silly addNameRange     '0.2.3',
+24 silly addNameRange     '0.2.4',
+24 silly addNameRange     '0.3.0',
+24 silly addNameRange     '0.4.0',
+24 silly addNameRange     '0.4.1',
+24 silly addNameRange     '0.4.2',
+24 silly addNameRange     '0.4.3',
+24 silly addNameRange     '0.4.4',
+24 silly addNameRange     '0.4.5',
+24 silly addNameRange     '0.4.6',
+24 silly addNameRange     '0.5.0',
+24 silly addNameRange     '0.5.1',
+24 silly addNameRange     '0.5.2',
+24 silly addNameRange     '0.5.3',
+24 silly addNameRange     '0.5.4',
+24 silly addNameRange     '0.6.0',
+24 silly addNameRange     '0.6.1',
+24 silly addNameRange     '0.6.4',
+24 silly addNameRange     '0.6.5',
+24 silly addNameRange     '0.6.6',
+24 silly addNameRange     '0.6.7',
+24 silly addNameRange     '0.6.8',
+24 silly addNameRange     '0.6.9',
+24 silly addNameRange     '0.6.10',
+24 silly addNameRange     '0.6.11',
+24 silly addNameRange     '0.6.12',
+24 silly addNameRange     '0.6.13',
+24 silly addNameRange     '0.7.0',
+24 silly addNameRange     '0.7.1',
+24 silly addNameRange     '0.7.2',
+24 silly addNameRange     '0.7.3',
+24 silly addNameRange     '0.7.4',
+24 silly addNameRange     '0.7.5',
+24 silly addNameRange     '0.7.6',
+24 silly addNameRange     '0.7.7',
+24 silly addNameRange     '0.7.8',
+24 silly addNameRange     '0.7.9',
+24 silly addNameRange     '0.7.10',
+24 silly addNameRange     '0.7.11',
+24 silly addNameRange     '0.7.12',
+24 silly addNameRange     '0.7.13' ] ]
+25 verbose addNamed [ 'buster', '0.7.13' ]
+26 verbose addNamed [ '0.7.13', '0.7.13' ]
+27 silly lockFile 0f479007-buster-0-7-13 buster@0.7.13
+28 verbose lock buster@0.7.13 /home/sionnea/.npm/0f479007-buster-0-7-13.lock
+29 silly lockFile d2f1a258-mjs-org-buster-buster-0-7-13-tgz https://registry.npmjs.org/buster/-/buster-0.7.13.tgz
+30 verbose lock https://registry.npmjs.org/buster/-/buster-0.7.13.tgz /home/sionnea/.npm/d2f1a258-mjs-org-buster-buster-0-7-13-tgz.lock
+31 verbose addRemoteTarball [ 'https://registry.npmjs.org/buster/-/buster-0.7.13.tgz',
+31 verbose addRemoteTarball   '76cfdd14d8dd299ad2ab3f0af3272fc405a99048' ]
+32 info retry fetch attempt 1 at 09:52:39
+33 verbose fetch to= /home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/tmp.tgz
+34 http GET https://registry.npmjs.org/buster/-/buster-0.7.13.tgz
+35 http 200 https://registry.npmjs.org/buster/-/buster-0.7.13.tgz
+36 verbose tar unpack /home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/tmp.tgz
+37 silly lockFile 636d3a2e-9868-0-22927919426001608-package tar:///home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/package
+38 verbose lock tar:///home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/package /home/sionnea/.npm/636d3a2e-9868-0-22927919426001608-package.lock
+39 silly lockFile 160cda8d-9868-0-22927919426001608-tmp-tgz tar:///home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/tmp.tgz
+40 verbose lock tar:///home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/tmp.tgz /home/sionnea/.npm/160cda8d-9868-0-22927919426001608-tmp-tgz.lock
+41 silly gunzTarPerm modes [ '755', '644' ]
+42 silly gunzTarPerm extractEntry package.json
+43 silly gunzTarPerm extractEntry run-tests.js
+44 silly gunzTarPerm extractEntry jsTestDriver.conf
+45 silly gunzTarPerm extractEntry Readme.md
+46 silly gunzTarPerm extractEntry bin/buster
+47 silly gunzTarPerm extractEntry bin/buster-autotest
+48 silly gunzTarPerm extractEntry bin/buster-headless
+49 silly gunzTarPerm extractEntry bin/buster-server
+50 silly gunzTarPerm extractEntry bin/buster-static
+51 silly gunzTarPerm extractEntry bin/buster-test
+52 silly gunzTarPerm extractEntry build
+53 silly gunzTarPerm extractEntry .travis.yml
+54 silly gunzTarPerm extractEntry lib/buster.js
+55 silly gunzTarPerm extractEntry lib/buster/amd-shim.js
+56 silly gunzTarPerm extractEntry lib/buster/browser-wiring.js
+57 silly gunzTarPerm extractEntry lib/buster/buster-wiring.js
+58 silly gunzTarPerm extractEntry lib/buster/capture-server-wiring.js
+59 silly gunzTarPerm extractEntry lib/buster/framework-extension.js
+60 silly gunzTarPerm extractEntry lib/buster/wiring-extension.js
+61 silly gunzTarPerm extractEntry .project
+62 silly gunzTarPerm extractEntry resources/buster-test.css
+63 silly gunzTarPerm extractEntry JsTestDriver-1.3.5.jar
+64 silly gunzTarPerm extractEntry script/phantom.js
+65 silly gunzTarPerm extractEntry test/buster-test.js
+66 silly gunzTarPerm extractEntry test/browser/browser-wiring-test.js
+67 silly gunzTarPerm extractEntry test/browser/capture-server-test-helper.js
+68 silly gunzTarPerm extractEntry test/browser/capture-server-wiring-test.js
+69 silly gunzTarPerm extractEntry test/integration/backend-proxy/buster.js
+70 silly gunzTarPerm extractEntry test/integration/backend-proxy/some-tests.js
+71 silly gunzTarPerm extractEntry test/integration/exclude/buster.js
+72 silly gunzTarPerm extractEntry test/integration/exclude/lib/mod1.js
+73 silly gunzTarPerm extractEntry test/integration/exclude/lib/mod2.js
+74 silly gunzTarPerm extractEntry test/integration/exclude/res/file1.json
+75 silly gunzTarPerm extractEntry test/integration/exclude/res/file2.json
+76 silly gunzTarPerm extractEntry test/integration/exclude/test/test.js
+77 silly gunzTarPerm extractEntry test/integration/match-data-attribute/buster.js
+78 silly gunzTarPerm extractEntry test/integration/match-data-attribute/test.js
+79 silly gunzTarPerm extractEntry test/integration/runAllTests.cmd
+80 silly gunzTarPerm extractEntry test/integration/runAllTests.sh
+81 silly gunzTarPerm extractEntry test/integration/sinon-match/buster.js
+82 silly gunzTarPerm extractEntry test/integration/sinon-match/test.js
+83 silly lockFile 636d3a2e-9868-0-22927919426001608-package tar:///home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/package
+84 silly lockFile 636d3a2e-9868-0-22927919426001608-package tar:///home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/package
+85 silly lockFile 160cda8d-9868-0-22927919426001608-tmp-tgz tar:///home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/tmp.tgz
+86 silly lockFile 160cda8d-9868-0-22927919426001608-tmp-tgz tar:///home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/tmp.tgz
+87 verbose tar pack [ '/home/sionnea/.npm/buster/0.7.13/package.tgz',
+87 verbose tar pack   '/home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/package' ]
+88 verbose tarball /home/sionnea/.npm/buster/0.7.13/package.tgz
+89 verbose folder /home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/package
+90 silly lockFile 636d3a2e-9868-0-22927919426001608-package tar:///home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/package
+91 verbose lock tar:///home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/package /home/sionnea/.npm/636d3a2e-9868-0-22927919426001608-package.lock
+92 silly lockFile 02298092-ea-npm-buster-0-7-13-package-tgz tar:///home/sionnea/.npm/buster/0.7.13/package.tgz
+93 verbose lock tar:///home/sionnea/.npm/buster/0.7.13/package.tgz /home/sionnea/.npm/02298092-ea-npm-buster-0-7-13-package-tgz.lock
+94 silly lockFile 636d3a2e-9868-0-22927919426001608-package tar:///home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/package
+95 silly lockFile 636d3a2e-9868-0-22927919426001608-package tar:///home/sionnea/tmp/npm-23245-WBTBmnk8/1400453559868-0.22927919426001608/package
+96 silly lockFile 02298092-ea-npm-buster-0-7-13-package-tgz tar:///home/sionnea/.npm/buster/0.7.13/package.tgz
+97 silly lockFile 02298092-ea-npm-buster-0-7-13-package-tgz tar:///home/sionnea/.npm/buster/0.7.13/package.tgz
+98 silly lockFile 8637acbf-ionnea-npm-buster-0-7-13-package /home/sionnea/.npm/buster/0.7.13/package
+99 verbose lock /home/sionnea/.npm/buster/0.7.13/package /home/sionnea/.npm/8637acbf-ionnea-npm-buster-0-7-13-package.lock
+100 silly lockFile 8637acbf-ionnea-npm-buster-0-7-13-package /home/sionnea/.npm/buster/0.7.13/package
+101 silly lockFile 8637acbf-ionnea-npm-buster-0-7-13-package /home/sionnea/.npm/buster/0.7.13/package
+102 verbose tar unpack /home/sionnea/.npm/buster/0.7.13/package.tgz
+103 silly lockFile 6db025d4-ionnea-npm-buster-0-7-13-package tar:///home/sionnea/.npm/buster/0.7.13/package
+104 verbose lock tar:///home/sionnea/.npm/buster/0.7.13/package /home/sionnea/.npm/6db025d4-ionnea-npm-buster-0-7-13-package.lock
+105 silly lockFile 02298092-ea-npm-buster-0-7-13-package-tgz tar:///home/sionnea/.npm/buster/0.7.13/package.tgz
+106 verbose lock tar:///home/sionnea/.npm/buster/0.7.13/package.tgz /home/sionnea/.npm/02298092-ea-npm-buster-0-7-13-package-tgz.lock
+107 silly gunzTarPerm modes [ '755', '644' ]
+108 silly gunzTarPerm extractEntry package.json
+109 silly gunzTarPerm extractEntry run-tests.js
+110 silly gunzTarPerm extractEntry jsTestDriver.conf
+111 silly gunzTarPerm extractEntry Readme.md
+112 silly gunzTarPerm extractEntry bin/buster
+113 silly gunzTarPerm extractEntry bin/buster-autotest
+114 silly gunzTarPerm extractEntry bin/buster-headless
+115 silly gunzTarPerm extractEntry bin/buster-server
+116 silly gunzTarPerm extractEntry bin/buster-static
+117 silly gunzTarPerm extractEntry bin/buster-test
+118 silly gunzTarPerm extractEntry build
+119 silly gunzTarPerm extractEntry .travis.yml
+120 silly gunzTarPerm extractEntry lib/buster.js
+121 silly gunzTarPerm extractEntry lib/buster/amd-shim.js
+122 silly gunzTarPerm extractEntry lib/buster/browser-wiring.js
+123 silly gunzTarPerm extractEntry lib/buster/buster-wiring.js
+124 silly gunzTarPerm extractEntry lib/buster/capture-server-wiring.js
+125 silly gunzTarPerm extractEntry lib/buster/framework-extension.js
+126 silly gunzTarPerm extractEntry lib/buster/wiring-extension.js
+127 silly gunzTarPerm extractEntry .project
+128 silly gunzTarPerm extractEntry resources/buster-test.css
+129 silly gunzTarPerm extractEntry JsTestDriver-1.3.5.jar
+130 silly gunzTarPerm extractEntry script/phantom.js
+131 silly gunzTarPerm extractEntry test/buster-test.js
+132 silly gunzTarPerm extractEntry test/browser/browser-wiring-test.js
+133 silly gunzTarPerm extractEntry test/browser/capture-server-test-helper.js
+134 silly gunzTarPerm extractEntry test/browser/capture-server-wiring-test.js
+135 silly gunzTarPerm extractEntry test/integration/backend-proxy/buster.js
+136 silly gunzTarPerm extractEntry test/integration/backend-proxy/some-tests.js
+137 silly gunzTarPerm extractEntry test/integration/exclude/buster.js
+138 silly gunzTarPerm extractEntry test/integration/exclude/lib/mod1.js
+139 silly gunzTarPerm extractEntry test/integration/exclude/lib/mod2.js
+140 silly gunzTarPerm extractEntry test/integration/exclude/res/file1.json
+141 silly gunzTarPerm extractEntry test/integration/exclude/res/file2.json
+142 silly gunzTarPerm extractEntry test/integration/exclude/test/test.js
+143 silly gunzTarPerm extractEntry test/integration/match-data-attribute/buster.js
+144 silly gunzTarPerm extractEntry test/integration/match-data-attribute/test.js
+145 silly gunzTarPerm extractEntry test/integration/runAllTests.cmd
+146 silly gunzTarPerm extractEntry test/integration/runAllTests.sh
+147 silly gunzTarPerm extractEntry test/integration/sinon-match/buster.js
+148 silly gunzTarPerm extractEntry test/integration/sinon-match/test.js
+149 silly lockFile 6db025d4-ionnea-npm-buster-0-7-13-package tar:///home/sionnea/.npm/buster/0.7.13/package
+150 silly lockFile 6db025d4-ionnea-npm-buster-0-7-13-package tar:///home/sionnea/.npm/buster/0.7.13/package
+151 silly lockFile 02298092-ea-npm-buster-0-7-13-package-tgz tar:///home/sionnea/.npm/buster/0.7.13/package.tgz
+152 silly lockFile 02298092-ea-npm-buster-0-7-13-package-tgz tar:///home/sionnea/.npm/buster/0.7.13/package.tgz
+153 verbose chmod /home/sionnea/.npm/buster/0.7.13/package.tgz 644
+154 verbose chown /home/sionnea/.npm/buster/0.7.13/package.tgz [ 508, 506 ]
+155 silly lockFile d2f1a258-mjs-org-buster-buster-0-7-13-tgz https://registry.npmjs.org/buster/-/buster-0.7.13.tgz
+156 silly lockFile d2f1a258-mjs-org-buster-buster-0-7-13-tgz https://registry.npmjs.org/buster/-/buster-0.7.13.tgz
+157 silly lockFile 0f479007-buster-0-7-13 buster@0.7.13
+158 silly lockFile 0f479007-buster-0-7-13 buster@0.7.13
+159 silly lockFile d441bf1e-buster buster@
+160 silly lockFile d441bf1e-buster buster@
+161 silly resolved [ { name: 'buster',
+161 silly resolved     version: '0.7.13',
+161 silly resolved     main: './lib/buster',
+161 silly resolved     description: 'Buster.JS JavaScript Test framework. Meta package that pieces together various sub-projects.',
+161 silly resolved     homepage: 'http://busterjs.org/',
+161 silly resolved     author: { name: 'August Lilleaas and Christian Johansen' },
+161 silly resolved     contributors: [ [Object], [Object], [Object] ],
+161 silly resolved     repository: { type: 'git', url: 'https://github.com/busterjs/buster.git' },
+161 silly resolved     bin:
+161 silly resolved      { buster: './bin/buster',
+161 silly resolved        'buster-test': './bin/buster-test',
+161 silly resolved        'buster-server': './bin/buster-server',
+161 silly resolved        'buster-autotest': './bin/buster-autotest',
+161 silly resolved        'buster-static': './bin/buster-static' },
+161 silly resolved     scripts:
+161 silly resolved      { test: 'node run-tests.js',
+161 silly resolved        'test-debug': 'node --debug-brk run-tests.js' },
+161 silly resolved     dependencies:
+161 silly resolved      { bane: '~1.0',
+161 silly resolved        'evented-logger': '~1.0',
+161 silly resolved        referee: '~1.0',
+161 silly resolved        formatio: '~1.0',
+161 silly resolved        sinon: '~1.9',
+161 silly resolved        'buster-test': '~0.7',
+161 silly resolved        'buster-sinon': '~0.7',
+161 silly resolved        'referee-sinon': '~1.0',
+161 silly resolved        'buster-test-cli': '~0.8',
+161 silly resolved        'buster-server-cli': '~0.3',
+161 silly resolved        'buster-static': '~0.6',
+161 silly resolved        'buster-autotest': '~0.4',
+161 silly resolved        'buster-syntax': '~0.4.2',
+161 silly resolved        when: 'https://github.com/cujojs/when/tarball/1.8.1',
+161 silly resolved        lodash: '~1.0',
+161 silly resolved        async: '~0.2',
+161 silly resolved        platform: '~1.0',
+161 silly resolved        'stack-filter': '~1.0',
+161 silly resolved        samsam: '~1.1' },
+161 silly resolved     devDependencies: { 'uglify-js': '~1.2.5' },
+161 silly resolved     readme: '# buster\n\n[![Build status](https://secure.travis-ci.org/busterjs/buster.png?branch=master)](http://travis-ci.org/busterjs/buster)\n\nMeta package, which wires together all Buster.JS submodules.\n\n* [Documentation](http://docs.busterjs.org/en/latest/)\n* [Changelog](http://docs.busterjs.org/en/latest/changelog/)\n\n> Want to support Buster.JS development? [Here](http://docs.busterjs.org/en/latest/developers/) you get useful information.\n\n\n### Core modules (in alphabetical order) ###\n\n* [ansi-colorizer](https://github.com/busterjs/ansi-colorizer) [![Build status](https://secure.travis-ci.org/busterjs/ansi-colorizer.png?branch=master)](http://travis-ci.org/busterjs/ansi-colorizer)\n* [bane](https://github.com/busterjs/bane) [![Build status](https://secure.travis-ci.org/busterjs/bane.png?branch=master)](http://travis-ci.org/busterjs/bane)\n* [buster-analyzer](https://github.com/busterjs/buster-analyzer) [![Build status](https://secure.travis-ci.org/busterjs/buster-analyzer.png?branch=master)](http://travis-ci.org/busterjs/buster-analyzer)\n* [buster-autotest](https://github.com/busterjs/buster-autotest) [![Build status](https://secure.travis-ci.org/busterjs/buster-autotest.png?branch=master)](http://travis-ci.org/busterjs/buster-autotest)\n* [buster-cli](https://github.com/busterjs/buster-cli) [![Build status](https://secure.travis-ci.org/busterjs/buster-cli.png?branch=master)](http://travis-ci.org/busterjs/buster-cli)\n* [buster-configuration](https://github.com/busterjs/buster-configuration) [![Build status](https://secure.travis-ci.org/busterjs/buster-configuration.png?branch=master)](http://travis-ci.org/busterjs/buster-configuration)\n* [buster-server-cli](https://github.com/busterjs/buster-server-cli) [![Build status](https://secure.travis-ci.org/busterjs/buster-server-cli.png?branch=master)](http://travis-ci.org/busterjs/buster-server-cli)\n* [buster-sinon](https://github.com/busterjs/buster-sinon) [![Build status](https://secure.travis-ci.org/busterjs/buster-sinon.png?branch=master)](http://travis-ci.org/busterjs/buster-sinon)\n* [buster-static](https://github.com/busterjs/buster-static) [![Build status](https://secure.travis-ci.org/busterjs/buster-static.png?branch=master)](http://travis-ci.org/busterjs/buster-static)\n* [buster-test](https://github.com/busterjs/buster-test) [![Build status](https://secure.travis-ci.org/busterjs/buster-test.png?branch=master)](http://travis-ci.org/busterjs/buster-test)\n* [buster-test-cli](https://github.com/busterjs/buster-test-cli) [![Build status](https://secure.travis-ci.org/busterjs/buster-test-cli.png?branch=master)](http://travis-ci.org/busterjs/buster-test-cli)\n* [evented-logger](https://github.com/busterjs/evented-logger) [![Build status](https://secure.travis-ci.org/busterjs/evented-logger.png?branch=master)](http://travis-ci.org/busterjs/evented-logger)\n* [formatio](https://github.com/busterjs/formatio) [![Build status](https://secure.travis-ci.org/busterjs/formatio.png?branch=master)](http://travis-ci.org/busterjs/formatio)\n* [fs-watch-tree](https://github.com/busterjs/fs-watch-tree) [![Build status](https://secure.travis-ci.org/busterjs/fs-watch-tree.png?branch=master)](http://travis-ci.org/busterjs/fs-watch-tree)\n* [multi-glob](https://github.com/busterjs/multi-glob) [![Build status](https://secure.travis-ci.org/busterjs/multi-glob.png?branch=master)](http://travis-ci.org/busterjs/multi-glob)\n* [posix-argv-parser](https://github.com/busterjs/posix-argv-parser) [![Build status](https://secure.travis-ci.org/busterjs/posix-argv-parser.png?branch=master)](http://travis-ci.org/busterjs/posix-argv-parser)\n* [prefsink](https://github.com/busterjs/prefsink) [![Build status](https://secure.travis-ci.org/busterjs/prefsink.png?branch=master)](http://travis-ci.org/busterjs/prefsink)\n* [ramp](https://github.com/busterjs/ramp) [![Build status](https://secure.travis-ci.org/busterjs/ramp.png?branch=master)](http://travis-ci.org/busterjs/ramp)\n* [ramp-resources](https://github.com/busterjs/ramp-resources) [![Build status](https://secure.travis-ci.org/busterjs/ramp-resources.png?branch=master)](http://travis-ci.org/busterjs/ramp-resources)\n* [referee](https://github.com/busterjs/referee) [![Build status](https://secure.travis-ci.org/busterjs/referee.png?branch=master)](http://travis-ci.org/busterjs/referee)\n* [referee-sinon](https://github.com/busterjs/referee-sinon) [![Build status](https://secure.travis-ci.org/busterjs/referee-sinon.png?branch=master)](http://travis-ci.org/busterjs/referee-sinon)\n* [samsam](https://github.com/busterjs/samsam) [![Build status](https://secure.travis-ci.org/busterjs/samsam.png?branch=master)](http://travis-ci.org/busterjs/samsam)\n* [stack-filter](https://github.com/busterjs/stack-filter) [![Build status](https://secure.travis-ci.org/busterjs/stack-filter.png?branch=master)](http://travis-ci.org/busterjs/stack-filter)\n* [stream-logger](https://github.com/busterjs/stream-logger) [![Build status](https://secure.travis-ci.org/busterjs/stream-logger.png?branch=master)](http://travis-ci.org/busterjs/stream-logger)\n\n\n### Extension modules (in alphabetical order) ###\n* [buster-amd](https://github.com/busterjs/buster-amd) [![Build status](https://secure.travis-ci.org/busterjs/buster-amd.png?branch=master)](http://travis-ci.org/busterjs/buster-amd)\n* [buster-coffee](https://github.com/busterjs/buster-coffee) [![Build status](https://secure.travis-ci.org/busterjs/buster-coffee.png?branch=master)](http://travis-ci.org/busterjs/buster-coffee)\n* [buster-html-doc](https://github.com/busterjs/buster-html-doc) [![Build status](https://secure.travis-ci.org/busterjs/buster-html-doc.png?branch=master)](http://travis-ci.org/busterjs/buster-html-doc)\n* [buster-jstestdriver](https://github.com/busterjs/buster-jstestdriver) [![Build status](https://secure.travis-ci.org/busterjs/buster-jstestdriver.png?branch=master)](http://travis-ci.org/busterjs/buster-jstestdriver)\n* [buster-lint](https://github.com/busterjs/buster-lint) [![Build status](https://secure.travis-ci.org/busterjs/buster-lint.png?branch=master)](http://travis-ci.org/busterjs/buster-lint)\n* [buster-syntax](https://github.com/busterjs/buster-syntax) [![Build status](https://secure.travis-ci.org/busterjs/buster-syntax.png?branch=master)](http://travis-ci.org/busterjs/buster-syntax)',
+161 silly resolved     readmeFilename: 'Readme.md',
+161 silly resolved     bugs: { url: 'https://github.com/busterjs/buster/issues' },
+161 silly resolved     _id: 'buster@0.7.13',
+161 silly resolved     dist: { shasum: '2964860148e63f582591c126eefa2e08132d6954' },
+161 silly resolved     _from: 'buster@',
+161 silly resolved     _resolved: 'https://registry.npmjs.org/buster/-/buster-0.7.13.tgz' } ]
+162 info install buster@0.7.13 into /usr/local/lib
+163 info installOne buster@0.7.13
+164 info /usr/local/lib/node_modules/buster unbuild
+165 verbose tar unpack /home/sionnea/.npm/buster/0.7.13/package.tgz
+166 silly lockFile d353fdfc-sr-local-lib-node-modules-buster tar:///usr/local/lib/node_modules/buster
+167 verbose lock tar:///usr/local/lib/node_modules/buster /home/sionnea/.npm/d353fdfc-sr-local-lib-node-modules-buster.lock
+168 silly lockFile 02298092-ea-npm-buster-0-7-13-package-tgz tar:///home/sionnea/.npm/buster/0.7.13/package.tgz
+169 verbose lock tar:///home/sionnea/.npm/buster/0.7.13/package.tgz /home/sionnea/.npm/02298092-ea-npm-buster-0-7-13-package-tgz.lock
+170 silly gunzTarPerm modes [ '755', '644' ]
+171 error Error: EACCES, mkdir '/usr/local/lib/node_modules/buster'
+171 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/buster']
+171 error   errno: 3,
+171 error   code: 'EACCES',
+171 error   path: '/usr/local/lib/node_modules/buster',
+171 error   fstream_type: 'Directory',
+171 error   fstream_path: '/usr/local/lib/node_modules/buster',
+171 error   fstream_class: 'DirWriter',
+171 error   fstream_stack:
+171 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+171 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53',
+171 error      'Object.oncomplete (fs.js:107:15)' ] }
+172 error Please try running this command again as root/Administrator.
+173 error System Linux 2.6.18-274.18.1.el5
+174 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "-g" "buster"
+175 error cwd /home/sionnea/public_html/DEV/_sion/cms
+176 error node -v v0.10.17
+177 error npm -v 1.3.8
+178 error path /usr/local/lib/node_modules/buster
+179 error fstream_path /usr/local/lib/node_modules/buster
+180 error fstream_type Directory
+181 error fstream_class DirWriter
+182 error code EACCES
+183 error errno 3
+184 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/buster'
+185 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+185 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53
+185 error fstream_stack Object.oncomplete (fs.js:107:15)
+186 verbose exit [ 3, true ]

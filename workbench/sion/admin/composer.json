@@ -9,10 +9,11 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "illuminate/support": "4.1.*"
+        "illuminate/support": "4.1.*",
+        "components/admin-js": "dev-master"
     },
     "require-dev": {
-
+        
     },
     "autoload": {
         "classmap": [
@@ -24,5 +25,8 @@
             "Sion\\Admin\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "config": {
+        "component-dir": "public/components"
+    }
 }

@@ -359,7 +359,7 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
+                                        <table class="table table-bordered table-hover table-striped" data-type='data-table'>
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
@@ -750,13 +750,19 @@
     <!-- /#wrapper -->
     @section("js")
     <!-- Core Scripts - Include with every page -->
-    <script src="{{asset('packages/sion/admin/js/jquery-1.10.2.js')}}"></script>
-    <script src="{{asset('packages/sion/admin/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('packages/sion/admin/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
-
-    <!-- SB Admin Scripts - Include with every page -->
-    <script src="{{asset('packages/sion/admin/js/sb-admin.js')}}"></script>
+    <script src="{{asset('packages/sion/admin/components/require.js')}}"></script>
+    <script>
+        require.config({
+          baseUrl: "/packages/sion/admin/components"
+        });
+        require(["jquery"],function(){
+            require(["{{asset('packages/sion/admin/js/plugins/metisMenu/jquery.metisMenu.js')}}","{{asset('packages/sion/admin/js/sb-admin.js')}}"]);
+        });
+        
+    </script>
+   
     @show
+
 </body>
 
 </html>

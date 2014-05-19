@@ -105,14 +105,18 @@
                 <!-- /.col-lg-6 -->
             </div>
             <!-- /.row -->
-@overwrite
+@stop
 @section("js")
     @parent
     <!-- Page-Level Plugin Scripts - Flot -->
     <!--[if lte IE 8]><script src="js/excanvas.min.js"></script><![endif]-->
-    <script src="{{asset('packages/sion/admin/js/plugins/flot/jquery.flot.js')}}"></script>
-    <script src="{{asset('packages/sion/admin/js/plugins/flot/jquery.flot.tooltip.min.js')}}"></script>
-    <script src="{{asset('packages/sion/admin/js/plugins/flot/jquery.flot.resize.js')}}"></script>
-    <script src="{{asset('packages/sion/admin/js/plugins/flot/jquery.flot.pie.js')}}"></script>
-    <script src="{{asset('packages/sion/admin/js/demo/flot-demo.js')}}"></script>
-@overwrite
+    <script>
+        require(["jquery"],function(AdminView){
+           require(["{{asset('packages/sion/admin/js/plugins/flot/jquery.flot.js')}}"],function(){
+                require(["{{asset('packages/sion/admin/js/plugins/flot/jquery.flot.tooltip.min.js')}}","{{asset('packages/sion/admin/js/plugins/flot/jquery.flot.resize.js')}}","{{asset('packages/sion/admin/js/plugins/flot/jquery.flot.pie.js')}}"],function(){
+                    require(["{{asset('packages/sion/admin/js/demo/flot-demo.js')}}"])
+                });
+           });
+        });
+    </script>
+@stop
