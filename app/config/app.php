@@ -105,7 +105,9 @@ return array(
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
-        'Sion\Admin\AdminServiceProvider'
+        'Sion\Admin\AdminServiceProvider',
+        'Sion\Admin\ExampleAdminServiceProvider',
+        'Sion\Admin\UserAdminServiceProvider'
     ),
     /*
       |--------------------------------------------------------------------------

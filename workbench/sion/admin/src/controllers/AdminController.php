@@ -4,11 +4,11 @@ class AdminController extends \BaseController {
     /**
      * Instantiate a new AdminController instance.
      */
-    public function __construct()
-    {
-      
-        $this->beforeFilter('auth', array('except' => array('postLogin','getLogin')));
-    }
+        public function __construct()
+        {
+
+            $this->beforeFilter('auth', array('except' => array('postLogin','getLogin')));
+        }
 	/**
 	 * Display a listing of the resource.
 	 *

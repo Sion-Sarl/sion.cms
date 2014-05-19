@@ -18,7 +18,7 @@
     "autoload": {
         "classmap": [
             "src/migrations",
-            "src/controllers/AdminController.php",
+            "src/controllers",
             "src/seeds"
         ],
         "psr-0": {

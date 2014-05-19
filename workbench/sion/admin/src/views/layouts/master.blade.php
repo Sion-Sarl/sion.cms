@@ -265,7 +265,7 @@
                         </li>
                         @foreach(Config::get("admin::navbar.menu") as $navbar)
                         <li @if(isset($navbar["filter"]) && str_contains(Request::url(),$navbar["filter"])) class='active' @endif >
-                            <a href="{{{$navbar["link"]}}}"><i class="{{{$navbar["icon"]}}}"></i>{{{$navbar["name"]}}} 
+                            <a href="{{(is_callable($navbar["link"]))?$navbar["link"]():$navbar["link"]}}"><i class="{{{$navbar["icon"]}}}"></i>{{{$navbar["name"]}}} 
                                 @if (isset($navbar["sub_menu"]) && is_array($navbar["sub_menu"]))
                                     <span class="fa arrow"></span>
                                 @endif
