@@ -24,6 +24,7 @@ return array(
          ),
         array(
             "name" => "Tables",
+            "filter" => "table",
             "link" => url("admin/example/table"),
             "icon" => "fa fa-table fa-fw"
         ),
