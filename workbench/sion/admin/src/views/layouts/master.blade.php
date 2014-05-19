@@ -749,18 +749,18 @@
     </div>
     <!-- /#wrapper -->
     @section("js")
-    <!-- Core Scripts - Include with every page -->
+    <!-- SB Admin Scripts - Include with every page -->
     <script src="{{asset('packages/sion/admin/components/require.js')}}"></script>
     <script>
-        require.config({
-          baseUrl: "/packages/sion/admin/components"
+        requirejs.config({
+            "baseUrl":"/packages/sion/admin/components"
+        })
+        require(["bootstrap3"],function(){
+            require(["{{asset('packages/sion/admin/js/plugins/metisMenu/jquery.metisMenu.js')}}"],function(){
+                require(["{{asset('packages/sion/admin/js/sb-admin.js')}}"]);
+            });
         });
-        require(["jquery"],function(){
-            require(["{{asset('packages/sion/admin/js/plugins/metisMenu/jquery.metisMenu.js')}}","{{asset('packages/sion/admin/js/sb-admin.js')}}"]);
-        });
-        
     </script>
-   
     @show
 
 </body>
