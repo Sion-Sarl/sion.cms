@@ -1,7 +1,6 @@
 @extends('admin::layouts.master')
 @section("js")
     @parent
-    <!-- Page-Level Demo Scripts -->
     <script>
         require(["admin-js"],function(AdminView){
            new AdminView();
