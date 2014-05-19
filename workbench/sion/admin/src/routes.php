@@ -11,15 +11,18 @@
 \Route::group(array('prefix' => \Config::get("admin::admin.uri"),'before' => 'auth'),function(){
     \Route::get("/","AdminController@getIndex");
     \Route::group(array('prefix' => "example"),function(){
-       \Route::get("{folder?}/{page}",function($folder="",$page){
+       \Route::get("{folder}/{page}",function($folder="",$page){
             try{
-               if($folder)
-               {
-                 return View::make("admin::examples.".$folder.".".$page);   
-               }else
-               {
-                 return View::make("admin::examples.".$page);  
-               }
+               return View::make("admin::examples.".$folder.".".$page);  
+            }
+            catch(InvalidArgumentException $e)
+            {
+                App::abort(404);
+            }
+        }); 
+        \Route::get("{page}",function($page){
+            try{
+               return View::make("admin::examples.".$page); 
             }
             catch(InvalidArgumentException $e)
             {
