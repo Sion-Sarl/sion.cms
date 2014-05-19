@@ -85,7 +85,13 @@
 @section("js")
     @parent
     <!-- Page-Level Plugin Scripts - Flot -->
-    <script src="{{asset('packages/sion/admin/js/plugins/morris/raphael-2.1.0.min.js')}}"></script>
-    <script src="{{asset('packages/sion/admin/js/plugins/morris/morris.js')}}"></script>
-    <script src="{{asset('packages/sion/admin/js/demo/morris-demo.js')}}"></script>
+    <script>
+        require(["jquery"],function(){
+           require(["{{asset('packages/sion/admin/js/plugins/morris/raphael-2.1.0.min.js')}}"],function(){
+                require(["{{asset('packages/sion/admin/js/plugins/morris/morris.js')}}"],function(){
+                    require(["{{asset('packages/sion/admin/js/demo/morris-demo.js')}}"])
+                });
+           });
+        });
+    </script>
 @overwrite
