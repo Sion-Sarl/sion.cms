@@ -2087,7 +2087,8 @@ requirejs.config({
         "css": "https://cdnjs.cloudflare.com/ajax/libs/require-css/0.1.1/css",
         "holder": "https://cdnjs.cloudflare.com/ajax/libs/holder/2.2.0/holder",
         "imgareaselect": "admin-js/js/jquery.imgareaselect/scripts/jquery.imgareaselect.min",
-        "ckeditor": "admin-js/js/ckeditor/adapters/jquery"
+        "ckeditor": "admin-js/js/ckeditor/adapters/jquery",
+        "plupload": "admin-js/js/moxiecode/plupload.full.min"
    },
    "shim" : {
        "imgareaselect":

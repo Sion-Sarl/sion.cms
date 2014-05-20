@@ -25,6 +25,13 @@ return array(
             "icon" => "fa fa-table fa-fw"
         ),
         array(
+            "name" => "Upload",
+            "filter" => "upload",
+            "link" => url("admin/example/upload"),
+            "icon" => "fa fa-upload fa-fw"
+        ),
+        /**
+        array(
             "name" => "Forms",
             "link" => url("admin/example/form"),
             "icon" => "fa fa-edit fa-fw"
@@ -55,6 +62,6 @@ return array(
                     "link" => "#"
                 )
             )
-        )
+        )**/
     )
 );

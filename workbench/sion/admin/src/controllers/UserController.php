@@ -36,8 +36,9 @@ class UserController extends \BaseController {
      * @return Response
      */
     public function create() {
-        $user = User::find($id);
-        return View::make("admin::user.manager", array("user" => $user));
+
+        $user = new User;
+        return View::make("admin::user.create", array("model" => $user,"action"=>array("action"=>"UserController@store")));
     }
 
     /**
@@ -47,6 +48,26 @@ class UserController extends \BaseController {
      */
     public function store() {
         //
+        $validator = Validator::make(
+            Input::All(),
+            array(
+                'email' => 'required|unique:users',
+                'password'=>'required'
+            )
+        );
+        if ($validator->fails())
+        {
+            return Redirect::action("UserController@create")->withErrors($validator)->withInput(Input::All());
+        }
+        else
+        {
+            $user = new User(Input::All());
+            $user->password = Hash::make(Input::get('password'));
+            $user->save();
+            return Redirect::action("UserController@index");
+        }
+        
+        
     }
 
     /**

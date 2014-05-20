@@ -19,12 +19,12 @@ class UserAdminServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('sion/admin');
-                $uri = \Config::get("admin::admin.uri");
-                \Route::group(array("prefix"=>$uri),function(){
-                    \Route::resource(\Config::get("admin::user.uri"), 'UserController');
-                    $menu = array_merge_recursive(\Config::get("admin::navbar.menu"),\Config::get("admin::user.menu"));
-                    \Config::set("admin::navbar.menu",$menu);
-                });
+        $uri = \Config::get("admin::admin.uri");
+        \Route::group(array("prefix"=>$uri),function(){
+            \Route::resource(\Config::get("admin::user.uri"), 'UserController');
+            $menu = array_merge_recursive(\Config::get("admin::navbar.menu"),\Config::get("admin::user.menu"));
+            \Config::set("admin::navbar.menu",$menu);
+        });
                 
 	}
 

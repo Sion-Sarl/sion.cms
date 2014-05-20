@@ -8,14 +8,17 @@
             </div>
         <% } else {%>
             <div  id="<%= id %>_thumbnail"  style="overflow:hidden;margin-bottom: 10px;">
-              <img src="http://placehold.it/<%= height %>&text=VOTRE+IMAGE" alt="..." id="<%= id %>_logo"  />
+              <img style="min-height: <%= height %>;min-width: <%= width %>" src="http://placehold.it/<%= height %>&text=VOTRE+IMAGE" alt="..." id="<%= id %>_logo"  />
             </div>
         <% } %>
      </div>
  </div>
-<p>
-    <button type="button" class="btn btn-success" id="<%= id %>_btn-add" ><i class="icon-plus icon-large"></i>Choissisez une image</button>
-    <button type="button" class="btn btn-info" id="<%= id %>_btn-crop" ><i class="icon-plus icon-large"></i>Cropper</button>
+ <div id="<%= id %>_filelist">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
+<br />
+<p id="<%= id %>_container">
+    <a class="btn btn-primary" id="<%= id %>_btn-add" ><i class="fa fa-plus"></i>Choissisez une image</a>
+    <a class="btn btn-info" id="<%= id %>_btn-crop" ><i class="fa fa-crop"></i>Cropper</a>
+    <a class="btn btn-success" id="<%= id %>_btn-upload" ><i class="fa fa-upload"></i>Upload</a>
 </p>
 <div class="form-group" id="<%= id %>_help">
     <span class="help-block"></span>
@@ -30,7 +33,7 @@
       <div class="modal-body">
         <div class="row">
             <div class="col-xs-12" id="imgarea-parent" >
-                <img id="<%= id %>_preview" data-id="<%= id %>" />
+                <img class="img-responsive" id="<%= id %>_preview" data-id="<%= id %>" />
             </div>
         </div>
       </div>

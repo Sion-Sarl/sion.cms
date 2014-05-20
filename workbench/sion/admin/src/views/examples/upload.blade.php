@@ -1,0 +1,35 @@
+@extends('admin::layouts.master')
+@section("content")
+            <div class="row">
+                <div class="col-lg-12">
+                        <h1 class="page-header">Upload</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Image Upload
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <input type="image" data-ration='1:1' data-type='picture-resizer' name="file" />
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+@stop
+@section("js")
+    @parent
+    <script>
+        require(["admin-js"],function(AdminView){
+            new AdminView();
+           
+        });
+    </script>
+@stop
