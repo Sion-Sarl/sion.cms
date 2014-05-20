@@ -45,7 +45,7 @@ return array(
       | to any of the locales which will be supported by the application.
       |
      */
-    'locale' => 'en',
+    'locale' => 'fr',
     /*
       |--------------------------------------------------------------------------
       | Application Fallback Locale
@@ -56,7 +56,7 @@ return array(
       | the language folders that are provided through your application.
       |
      */
-    'fallback_locale' => 'fr',
+    'fallback_locale' => 'en',
     /*
       |--------------------------------------------------------------------------
       | Encryption Key

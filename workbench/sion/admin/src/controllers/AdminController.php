@@ -25,12 +25,17 @@ class AdminController extends \BaseController {
         }
         public function postLogin()
         {
-            if (!Auth::attempt(array('email' => Input::get('email'), 'password' =>  Input::get('password'))))
+            if (!Auth::attempt(array('pseudo' => Input::get('pseudo'), 'password' =>  Input::get('password')),Input::get('remember')))
             {
                return Redirect::action('AdminController@getLogin')->with("erreur","Mot de passe ou pseudo incorrect");
             }
             else {
                return Redirect::action('AdminController@getIndex');
             }
+        }
+        public function logOut()
+        {
+            Auth::logout();
+            return Redirect::to(\Config::get("admin::admin.back_to_site_path"));
         }
 }

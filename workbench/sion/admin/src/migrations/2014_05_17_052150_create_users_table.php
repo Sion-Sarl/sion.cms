@@ -12,17 +12,18 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		//
-        Schema::create('users', function($table)
-        {
-            $table->increments('id');
-            $table->dateTime('created_at')->nullable();
-            $table->dateTime('updated_at')->nullable();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('remember_token')->nullable();
-            
-        });
+            //
+            Schema::dropIfExists('users');
+            Schema::create('users', function($table)
+            {
+                $table->increments('id');
+                $table->dateTime('created_at')->nullable();
+                $table->dateTime('updated_at')->nullable();
+                $table->string('email')->unique();
+                $table->string('password');
+                $table->string('remember_token')->nullable();
+                $table->string('pseudo')->nullable();
+            });
 	}
 
 	/**
@@ -32,7 +33,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-        DB::table('users')->delete();
+            DB::table('users')->delete();
 		//
 	}
 

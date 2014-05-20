@@ -52,7 +52,8 @@ class UserController extends \BaseController {
             Input::All(),
             array(
                 'email' => 'required|unique:users',
-                'password'=>'required'
+                'password'=>'required',
+                'pseudo' => 'alpha_num|unique:users,pseudo'
             )
         );
         if ($validator->fails())
@@ -61,7 +62,7 @@ class UserController extends \BaseController {
         }
         else
         {
-            $user = new User(Input::All());
+            $user = User::create(Input::All());
             $user->password = Hash::make(Input::get('password'));
             $user->save();
             return Redirect::action("UserController@index");
@@ -90,6 +91,8 @@ class UserController extends \BaseController {
      */
     public function edit($id) {
         //
+        $user = User::find($id);
+        return View::make("admin::user.edit", array("model" => $user,"action"=>array('action' => array('UserController@update', $user->id))));
     }
 
     /**
