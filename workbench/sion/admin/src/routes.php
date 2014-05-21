@@ -11,6 +11,7 @@
 Route::when(\Config::get("admin::admin.uri").'/*', 'auth');
 \Route::group(array('prefix' => \Config::get("admin::admin.uri")), function() {
     \Route::get("/", "AdminController@getIndex");
+    \Route::post("image/upload", "ImageController@handleUpload");
 });
 \Route::get(\Config::get("admin::admin.login_path"), "AdminController@getLogin");
 \Route::post(\Config::get("admin::admin.login_path"), "AdminController@postLogin");

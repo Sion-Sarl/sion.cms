@@ -23,6 +23,10 @@ requirejs.config({
        "ckeditor":
        {
             "deps":["admin-js/js/ckeditor/ckeditor"]
+       },
+       "backbone":
+       {
+            "deps":["jquery","underscore"]
        }
     }
 });
@@ -111,6 +115,18 @@ define(['bootstrap3','backbone'],function() {
                 require(['views/form/DatePicker/DatePicker'],function(DatePicker){
                     $("[data-type='datepicker']").each(function(){
                         new DatePicker(
+                            {
+                                el : $(this)
+                            }
+                        );  
+                    })  
+                });
+           }
+           if($("[data-type='photo-gallery']").length > 0)
+           {
+                require(['views/form/PhotoGallery/PhotoGallery'],function(PhotoGallery){
+                    $("[data-type='photo-gallery']").each(function(){
+                        new PhotoGallery(
                             {
                                 el : $(this)
                             }

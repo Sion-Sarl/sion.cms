@@ -3,12 +3,12 @@
  <div class="row">
      <div class="col-xs-12 col-md-12">
         <% if(file) { %>
-            <div  id="<%= id %>_thumbnail"  style="margin-bottom: 10px;">
+            <div  id="<%= id %>_thumbnail"  style="overflow:hidden;margin-bottom: 10px;">
               <img src="<%= file %>" alt="..." id="<%= id %>_logo" />
             </div>
         <% } else {%>
             <div  id="<%= id %>_thumbnail"  style="overflow:hidden;margin-bottom: 10px;">
-              <img style="min-height: <%= height %>;min-width: <%= width %>" src="http://placehold.it/<%= height %>&text=VOTRE+IMAGE" alt="..." id="<%= id %>_logo"  />
+              <img style="min-height: <%= height %>;min-width: <%= width %>" src="http://placehold.it/<%= height %>&text=<%= encodeURIComponent(text)%>" alt="..." id="<%= id %>_logo"  />
             </div>
         <% } %>
      </div>
@@ -24,25 +24,26 @@
     <span class="help-block"></span>
 </div>
 <div class="modal fade" id="<%= id %>_modal">
-<div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-            <div class="col-xs-12" id="imgarea-parent" >
-                <img class="img-responsive" id="<%= id %>_preview" data-id="<%= id %>" />
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-12" id="<%= id %>_imgarea-parent" >
+                    <img class="img-responsive" id="<%= id %>_preview" data-id="<%= id %>" data-url="<%= url %>" />
+                </div>
             </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Valider</button>
+          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Valider</button>
-      </div>
     </div>
-</div>
 </div><!-- /.modal -->
+
 <input type="hidden" id="<%= id %>_x1" name="x1" />
 <input type="hidden" id="<%= id %>_y1" name="y1" />
 <input type="hidden" id="<%= id %>_x2" name="x2" />

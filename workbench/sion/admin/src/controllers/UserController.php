@@ -92,7 +92,7 @@ class UserController extends \BaseController {
     public function edit($id) {
         //
         $user = User::find($id);
-        return View::make("admin::user.edit", array("model" => $user,"action"=>array('action' => array('UserController@update', $user->id))));
+        return View::make("admin::user.edit", array("model" => $user,"action"=>array('action' => array('UserController@update', array($user->id)))));
     }
 
     /**
@@ -103,6 +103,29 @@ class UserController extends \BaseController {
      */
     public function update($id) {
         //
+        $validator = Validator::make(
+            Input::All(),
+            array(
+                'email' => "required|unique:users,id,$id",
+                'pseudo' => "alpha_num|unique:users,pseudo,$id"
+            )
+        );
+        if ($validator->fails())
+        {
+            return Redirect::action("UserController@create")->withErrors($validator)->withInput(Input::All());
+        }
+        else
+        {
+            $user = User::find($id);
+            $user->pseudo = Input::get("pseudo");
+            $user->email = Input::get("email");
+            if(Input::get('password'))
+            {
+                $user->password = Hash::make(Input::get('password'));
+            }
+            $user->save();
+            return Redirect::action("UserController@index");
+        }
     }
 
     /**

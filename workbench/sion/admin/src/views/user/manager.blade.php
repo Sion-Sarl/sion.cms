@@ -32,9 +32,9 @@
                                 <td>{{{$user->id}}}</td>
                                 <td>{{$user->pseudo}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>{{$user->created_at}}</td>
+                                <td></td>
                                 <td>
-                                    {{link_to_action('admin.utilisateur.edit', 'Editer',array($user->id), $attributes = array("class"=>"btn btn-success"))}}
+                                    {{link_to_action('UserController@edit' , 'Editer',array($user->id),array("class"=>"btn btn-success"))}}
                                 </td>
                             </tr>
                             @endforeach

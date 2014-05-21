@@ -5,9 +5,11 @@
         options: {
             sortable: {
                 placeholder: "sortable-li-highlight",
+                itemSelector: "li",
                 stop: function( event, ui ) {
                         var php =  $(this).sortableAjax("option","php");
-                        $(this).children("li").each(function(){
+                        var item = $(this).sortableAjax("option","itemSelector");
+                        $(this).children(item ).each(function(){
                             $(this).find("[data-ordre='true']").html($(this).index()+1);
                             $.ajax({
                                   type: "POST",
@@ -24,7 +26,7 @@
            {
                 this.options.php = this.element.data("url");
            }
-           this.element.find("ul").sortableAjax(this.options); 
+           this.element.find("[data-role='sortable']").sortableAjax(this.options); 
            this.element.sortable(this.options.sortable);
            this.element.addClass("sortable");
              
