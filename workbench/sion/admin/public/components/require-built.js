@@ -2086,7 +2086,7 @@ requirejs.config({
         "text": "https://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.10/text.min",
         "css": "https://cdnjs.cloudflare.com/ajax/libs/require-css/0.1.1/css",
         "holder": "https://cdnjs.cloudflare.com/ajax/libs/holder/2.2.0/holder",
-        "imgareaselect": "admin-js/js/jquery.imgareaselect/scripts/jquery.imgareaselect.min",
+        "imgareaselect": "admin-js/js/jquery.imgareaselect/scripts/jquery.imgareaselect",
         "ckeditor": "admin-js/js/ckeditor/adapters/jquery",
         "plupload": "admin-js/js/moxiecode/plupload.full.min"
    },

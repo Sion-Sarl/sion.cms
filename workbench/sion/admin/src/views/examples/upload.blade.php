@@ -15,7 +15,8 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <input data-size='{{@Sion\Admin\Models\Image::find(1)->size}}' data-name='{{basename(@Sion\Admin\Models\Image::find(1)->path)}}' data-file='{{asset(@Sion\Admin\Models\Image::find(1)->path)}}' data-height='200' data-width='200' type="image" data-ration='1:1' data-type='picture-resizer' data-url='{{action("ImageController@handleUpload")}}' name="file" />
+                            {{Html::resizer(Sion\Admin\Models\Image::find(1))}}
+                            
                         </div>
                         <!-- /.panel-body -->
                     </div>

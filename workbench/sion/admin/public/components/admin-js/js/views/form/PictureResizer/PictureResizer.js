@@ -1,4 +1,4 @@
-define(['require','text!views/form/PictureResizer/template/PictureResizer.html',"plupload","imgareaselect","holder"],function(require,tpl) {"use strict";
+define(['require','text!views/form/PictureResizer/template/PictureResizer.html','css!views/form/PictureResizer/css/PictureResizer.css',"plupload","imgareaselect","holder"],function(require,tpl) {"use strict";
  
 	var template = _.template(tpl);
 	return Backbone.View.extend({
@@ -9,22 +9,22 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             max_size: 500000000,
             aspectRatio: "1",
             url: "",
-            text:"VOTRE IMAGE"       
+            text:"VOTRE IMAGE",
+            fileId: ""       
 		},
 		initialize : function(options) {
             var self = this;
-            console.log(options,this.defaults);
 			this.options = _.extend({},this.defaults,options);
-            console.log(this.options);
             this.options.file = ($(this.el).data("file"))?$(this.el).data("file"):$(this.el).attr("src");
+            if($(this.el).data("filefull"))
+            {
+                this.options.fileFull = $(this.el).data("filefull");
+            }
             if($(this.el).data("id"))
             {
-                this.options.id = $(this.el).data("id");
+                this.options.fileId = $(this.el).data("id");
             }
-            else
-            {
-                this.options.id = this.guid();
-            }
+            this.options.id = this.guid();
             this.options.name = $(this.el).attr("name");
             if($(this.el).data("ratio"))
             {
@@ -67,7 +67,7 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             var uploader = new plupload.Uploader({
                 runtimes : 'html5,flash,silverlight,html4',
                  
-                browse_button : self.options.id, // you can pass in id...
+                browse_button : self.options.id+"_btn-add", // you can pass in id...
                 container: self.options.id+"_container", // ... or DOM Element itself
                  
                 url : this.options.url,
@@ -127,20 +127,22 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                         plupload.each(files, function(file) {
                             try
                             {
-                                self.fileSelectHandler(file.getNative()); 
+                                self.fileSelectHandler(file.getNative(),function(){
+                                    $("#"+self.options.id+"_btn-upload").click();
+                                    if(self.options.callback)
+                                    {
+                                         self.options.callback();
+                                    }
+                                }); 
                             }
                             catch(e)
                             {
                                 
                             }
-                            console.log(file);
                             document.getElementById(self.options.id+'_filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
                         });
-                        $("#"+self.options.id+"_btn-upload").click();
-                        if(self.options.callback)
-                        {
-                             self.options.callback();
-                        }
+                        
+                      
                     },
              
                     UploadProgress: function(up, file) {
@@ -152,67 +154,114 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                         console.log(err);
                     },
                     BeforeUpload: function(up, file) {
-                       console.log(this.settings);
+                    
                         // Called right before the upload for a given file starts, can be used to cancel it if required
                         uploader.settings.multipart_params["x1"] = parseInt($('#'+id+'_x1').val());
                         uploader.settings.multipart_params["x2"] = parseInt($('#'+id+'_x2').val());
                         uploader.settings.multipart_params["y1"] = parseInt($('#'+id+'_y1').val());
                         uploader.settings.multipart_params["y2"] = parseInt($('#'+id+'_y2').val());
-                        uploader.settings.multipart_params["height"] = self.options.height;
-                        uploader.settings.multipart_params["width"] = self.options.width;
+                        uploader.settings.multipart_params["height"] = parseInt(self.options.height);
+                        uploader.settings.multipart_params["width"] = parseInt(self.options.width);
+                        console.log(  uploader.settings.multipart_params);
                         $("#"+self.options.id+"_btn-crop").hide();
                           
                     },
-                    FileUploaded: function(){
+                    UploadComplete: function(up, file){
                         $("#"+self.options.id+"_btn-crop").show();
+                    },
+                    FileUploaded:function(up,file,info){
+                        console.log(info);
+                        var json = jQuery.parseJSON(info.response);
+                        if(json.id)
+                        {
+                            console.log(json.id);
+                            $("#"+self.options.id+"_preview").data("fileid",json.id);
+                        }
                     }
                 }
             });
             uploader.init();
             $("#"+this.options.id+"_btn-add").click(function(e) {
                 e.preventDefault();
-                self.resetFormElement();
-                $("#"+self.options.id).click();   
-            });
-            $("#"+self.options.id).change(function(){
-                self.fileSelectHandler();
-                self.resetFormElement();
             });
             $("#"+self.options.id+"_modal").appendTo($("body"));
             $("#"+this.options.id+"_btn-crop").click(function(e){
                 e.preventDefault();
-                $("#"+self.options.id+"_modal").modal();
+           
+                $("#"+self.options.id+"_modal").modal({backdrop: 'static'});
                 $("#"+self.options.id+"_modal").find(".modal-dialog").css({
-                  width:($(window).width() < $("#"+self.options.id+"_logo").get(0).naturalWidth)?$(window).width():$("#"+self.options.id+"_logo").get(0).naturalWidth, //probably not needed
-                  height:($(window).height() < $("#"+self.options.id+"_logo").get(0).naturalHeight)?$(window).height():$("#"+self.options.id+"_logo").get(0).naturalHeight, //probably not needed 
+                  width:($(window).width() < $("#"+self.options.id+"_preview").get(0).naturalWidth)?$(window).width():$("#"+self.options.id+"_preview").get(0).naturalWidth, //probably not needed
+                  height:($(window).height() < $("#"+self.options.id+"_preview").get(0).naturalHeight)?$(window).height():$("#"+self.options.id+"_preview").get(0).naturalHeight, //probably not needed 
                   'max-height':'100%'
                 });
+                if(self.options.fileFull)
+                {
+                    $("#"+self.options.id+"_logo").attr("src",self.options.fileFull);
+                }
+             
             });
             if(!this.options.file )
             {
                $("#"+this.options.id+"_btn-crop").hide();
                $("#"+this.options.id+"_btn-upload").hide();
-                  
+               
             }
             else
             {
                 $("#"+this.options.id+"_btn-upload").hide();  
-                $("#"+self.options.id+"_preview").attr("src",self.options.file);
+                if(!self.options.fileFull)
+                {
+                     $("#"+self.options.id+"_preview").attr("src",self.options.file);
+                }
+                else
+                {
+                     $("#"+self.options.id+"_preview").attr("src",self.options.fileFull);  
+                }
                 self.imgAreaSelect = $('#'+self.options.id+'_preview').imgAreaSelect({
-                    onSelectChange: self.updateInfo,
-                    "parent" : "#"+self.options.id+"_modal"+" .modal-dialog",
-                    instance: true,
-                    aspectRatio: self.options.aspectRatio
-                });					
-                self.imgAreaSelect.setSelection($(self.el).data("x1")+21, $(self.el).data("y1")+77, $(self.el).data("x2"), $(self.el).data("y2"));
-                self.imgAreaSelect.update();			            
-                self.imgAreaSelect.setOptions({ show: true });
-            }	
+                        onSelectChange: self.updateInfo,
+                        parent : $("#"+self.options.id+"_imgarea-parent"),
+                        instance: true,
+                        aspectRatio: self.options.aspectRatio,
+                        movable: true,
+                        onInit: function(){
+                            var x1 = Math.round(($(self.el).data("x1")*$("#"+id+"_preview").get(0).width)/$("#"+id+"_preview").get(0).naturalWidth);
+                            var y1 = Math.round(($(self.el).data("y1")*$("#"+id+"_preview").get(0).height)/$("#"+id+"_preview").get(0).naturalHeight);
+                            var x2 = Math.round(($(self.el).data("x2")*$("#"+id+"_preview").get(0).width)/$("#"+id+"_preview").get(0).naturalWidth);
+                            var y2 = Math.round(($(self.el).data("y2")*$("#"+id+"_preview").get(0).height)/$("#"+id+"_preview").get(0).naturalHeight);	
+                            console.log(x1,y1,x2,y2);	
+                            self.imgAreaSelect.setSelection(x1,y1,x2,y2);
+                            self.imgAreaSelect.setOptions({ show: true });
+                            self.imgAreaSelect.update();       
+                        }
+                });	
+            }
+            $("#"+self.options.id+"_modal").on('hidden.bs.modal', function () {
+                
+                var data = {
+                        "x1":  parseInt($('#'+id+'_x1').val()),
+                        "x2":  parseInt($('#'+id+'_x2').val()),
+                        "y1":  parseInt($('#'+id+'_y1').val()),
+                        "y2":  parseInt($('#'+id+'_y2').val()),
+                        "width":  parseInt(self.options.width),
+                        "height":  parseInt(self.options.height),
+                        "id": $("#"+id+"_preview").data("fileid")
+                };
+                console.log(data);
+                $.ajax({
+                   url: $("#"+id+"_preview").data("url"),
+                   type: 'POST',
+                   dataType: 'json',
+                   data:data,
+                   success: function(response) {
+                        console.log(response);
+                      
+                   }
+                });
+            })	
 		},
         updateInfo: function(img,selection) {
             if (!selection.width || !selection.height)
                 return;
-
             var id = $(img).data("id");
             var oImage = $("#"+id+"_preview");
             var scaleX =  $('#'+id+"_thumbnail").width()  / selection.width;
@@ -237,22 +286,6 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             $('#'+id+'_y2').val(y2);
             $('#'+id+'_w').val(w);
             $('#'+id+'_h').val(h);  
-            $.ajax({
-               url: $(img).data("url"),
-               type: 'POST',
-               data:{
-                    "x1": x1,
-                    "x2": x2,
-                    "y1": y1,
-                    "y2": y2,
-                    "width": w,
-                    "height": h
-                },
-               success: function(response) {
-                    console.log("reponse post crop",response);
-               }
-            });
-            
         },
         clearInfo: function()
         {
@@ -269,10 +302,11 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
         {
             
         },
-        fileSelectHandler:function(file)
+        fileSelectHandler:function(file,callback)
         {
             var self = this;
             var oFile = file;
+            var id = self.options.id;
             if(this.jcrop_api && oFile)
             {
                 this.jcrop_api.destroy();
@@ -313,24 +347,32 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                     oImage.attr("src",e.target.result); 
                     self.imgAreaSelect = $('#'+self.options.id+'_preview').imgAreaSelect({
                         onSelectChange: self.updateInfo,
-                        "parent" : "#"+self.options.id+"_modal"+" .modal-dialog",
+                        parent : $("#"+self.options.id+"_imgarea-parent"),
                         instance: true,
-                        aspectRatio: self.options.aspectRatio
-                    });
+                        aspectRatio: self.options.aspectRatio,
+                        show: true 
+                    });	
+                    $('#'+id+'_x1').val(0);
+                    $('#'+id+'_y1').val(0);
+                    $('#'+id+'_x2').val(oImage.get(0).naturalWidth);
+                    $('#'+id+'_y2').val(oImage.get(0).naturalHeight);
                     $("#"+self.options.id+"_btn-crop").show();						
-                    self.init();
+                    self.init(function(){
+                           callback();
+                    });
+                 
 
             };
              // read selected file as DataURL
             oReader.readAsDataURL(oFile);
         },
-        init: function()
+        init: function(callback)
         {
             var self = this;
             var oImage = $("#"+this.options.id+"_preview");
-            self.imgAreaSelect.setSelection(21, 77, oImage.get(0).naturalWidth+21, oImage.get(0).naturalHeight+77);
+            self.imgAreaSelect.setSelection(0, 0, oImage.get(0).naturalWidth, oImage.get(0).naturalHeight);
             self.imgAreaSelect.update();			            
-            self.imgAreaSelect.setOptions({ show: true });
+            callback();
         },
         guid: function()
         {
