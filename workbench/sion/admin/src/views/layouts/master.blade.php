@@ -12,10 +12,6 @@
     <link href="{{asset('packages/sion/admin/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('packages/sion/admin/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 
-    <!-- Page-Level Plugin CSS - Dashboard -->
-    <link href="{{asset('packages/sion/admin/css/plugins/morris/morris-0.4.3.min.css')}}" rel="stylesheet">
-    <link href="{{asset('packages/sion/admin/css/plugins/timeline/timeline.css')}}" rel="stylesheet">
-
     <!-- SB Admin CSS - Include with every page -->
     <link href="{{asset('packages/sion/admin/css/sb-admin.css')}}" rel="stylesheet">
     @show
@@ -37,8 +33,9 @@
                 <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
             </div>
             <!-- /.navbar-header -->
-         
+           
             <ul class="nav navbar-top-links navbar-right">
+                {{--
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -229,19 +226,20 @@
                     <!-- /.dropdown-alerts -->
                 </li>
                 <!-- /.dropdown -->
+                --}}
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
+                    <a {{-- class="dropdown-toggle" data-toggle="dropdown" --}} href="{{action("AdminController@logOut")}}">
+                        <i class="fa fa-sign-out fa-fw"></i> {{-- <i class="fa fa-caret-down"></i> --}}
+                    </a>  
+                    {{--                 
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="{{action("AdminController@logOut")}}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
+                    --}}
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->

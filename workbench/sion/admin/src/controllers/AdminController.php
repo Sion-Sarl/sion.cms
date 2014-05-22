@@ -27,7 +27,7 @@ class AdminController extends \BaseController {
         {
             if (!Auth::attempt(array('pseudo' => Input::get('pseudo'), 'password' =>  Input::get('password')),Input::get('remember')))
             {
-               return Redirect::action('AdminController@getLogin')->with("erreur","Mot de passe ou pseudo incorrect");
+               return Redirect::action('AdminController@getLogin')->with("erreur","error");
             }
             else {
                return Redirect::action('AdminController@getIndex');

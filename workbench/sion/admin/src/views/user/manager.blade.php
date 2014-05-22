@@ -35,6 +35,7 @@
                                 <td></td>
                                 <td>
                                     {{link_to_action('UserController@edit' , 'Editer',array($user->id),array("class"=>"btn btn-success"))}}
+                                    {{link_to_action('UserController@destroy' , 'Supprimer',array($user->id),array("class"=>"btn btn-danger"))}}
                                 </td>
                             </tr>
                             @endforeach

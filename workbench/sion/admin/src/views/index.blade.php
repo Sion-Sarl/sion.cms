@@ -1,4 +1,13 @@
 @extends('admin::layouts.master')
+
+@section("css")
+    @parent
+    <!-- Page-Level Plugin CSS - Dashboard -->
+    <link href="{{asset('packages/sion/admin/css/plugins/morris/morris-0.4.3.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('packages/sion/admin/css/plugins/timeline/timeline.css')}}" rel="stylesheet"/>
+
+@stop
+
 @section("js")
     @parent
     <script>
