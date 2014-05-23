@@ -62,10 +62,6 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             $("#"+this.options.id+"_thumbnail").width(this.options.width);			
             $("#"+this.options.id+"_thumbnail img").height(this.options.height);
             $("#"+this.options.id+"_thumbnail img").width(this.options.width);
-            $("#"+this.options.id+"_thumbnail_modal").height(this.options.height);
-            $("#"+this.options.id+"_thumbnail_modal").width(this.options.width);			
-            $("#"+this.options.id+"_thumbnail_modal img").height(this.options.height);
-            $("#"+this.options.id+"_thumbnail_modal img").width(this.options.width);
             var id = this.options.id;
             //INIT PLUPLOAD
             var uploader = new plupload.Uploader({
@@ -166,16 +162,12 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                         uploader.settings.multipart_params["y2"] = parseInt($('#'+id+'_y2').val());
                         uploader.settings.multipart_params["height"] = parseInt(self.options.height);
                         uploader.settings.multipart_params["width"] = parseInt(self.options.width);
-                        uploader.settings.multipart_params["order"] = parseInt($("#"+self.options.id).parent().data("order"));
                         console.log(  uploader.settings.multipart_params);
                         $("#"+self.options.id+"_btn-crop").hide();
-                        $("#"+self.options.id+"_modal .close").prop('disabled', true);
-                        $("#"+self.options.id+"_modal .validate").prop('disabled', true);
+                          
                     },
                     UploadComplete: function(up, file){
                         $("#"+self.options.id+"_btn-crop").show();
-                        $("#"+self.options.id+"_modal .close").prop('disabled',false);
-                        $("#"+self.options.id+"_modal .validate").prop('disabled',false);
                     },
                     FileUploaded:function(up,file,info){
                         console.log(info);
@@ -195,22 +187,18 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             $("#"+self.options.id+"_modal").appendTo($("body"));
             $("#"+this.options.id+"_btn-crop").click(function(e){
                 e.preventDefault();
+           
                 $("#"+self.options.id+"_modal").modal({backdrop: 'static'});
                 $("#"+self.options.id+"_modal").find(".modal-dialog").css({
                   width:($(window).width() < $("#"+self.options.id+"_preview").get(0).naturalWidth)?$(window).width():$("#"+self.options.id+"_preview").get(0).naturalWidth, //probably not needed
                   height:($(window).height() < $("#"+self.options.id+"_preview").get(0).naturalHeight)?$(window).height():$("#"+self.options.id+"_preview").get(0).naturalHeight, //probably not needed 
+                  'max-height':'100%'
                 });
                 if(self.options.fileFull)
                 {
                     $("#"+self.options.id+"_logo").attr("src",self.options.fileFull);
                 }
-                $("#"+self.options.id+"_logo_modal").attr("src",$("#"+self.options.id+"_logo").attr("src"));
-        
-                
-            });
-            $("#"+self.options.id+"_logo").click(function(e){
-                 e.preventDefault();
-                 $("#"+self.options.id+"_btn-crop").click();
+             
             });
             if(!this.options.file )
             {
@@ -220,7 +208,6 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             }
             else
             {
-                $("#"+this.options.id+"_btn-crop").hide();
                 $("#"+this.options.id+"_btn-upload").hide();  
                 if(!self.options.fileFull)
                 {
@@ -244,7 +231,7 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                             console.log(x1,y1,x2,y2);	
                             self.imgAreaSelect.setSelection(x1,y1,x2,y2);
                             self.imgAreaSelect.setOptions({ show: true });
-                            self.imgAreaSelect.update();    
+                            self.imgAreaSelect.update();       
                         }
                 });	
             }
@@ -259,6 +246,7 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                         "height":  parseInt(self.options.height),
                         "id": $("#"+id+"_preview").data("fileid")
                 };
+                console.log(data);
                 $.ajax({
                    url: $("#"+id+"_preview").data("url"),
                    type: 'POST',
@@ -269,58 +257,23 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                       
                    }
                 });
-            });
-            $('#'+id+'_ratio').change(function(){
-               self.imgAreaSelect.setOptions({show:true, aspectRatio: $(this).val()});
-                 var x1 = Math.round(($(self.el).data("x1")*$("#"+id+"_preview").get(0).width)/$("#"+id+"_preview").get(0).naturalWidth);
-                var y1 = Math.round(($(self.el).data("y1")*$("#"+id+"_preview").get(0).height)/$("#"+id+"_preview").get(0).naturalHeight);
-                var x2 = Math.round(($(self.el).data("x2")*$("#"+id+"_preview").get(0).width)/$("#"+id+"_preview").get(0).naturalWidth);
-                var y2 = Math.round(($(self.el).data("y2")*$("#"+id+"_preview").get(0).height)/$("#"+id+"_preview").get(0).naturalHeight);	
-               self.imgAreaSelect.setSelection(x1,y1,x2,y2);
-               self.imgAreaSelect.update();  
-            });
-            $("#"+id+"_delete").click(function(e){
-                e.preventDefault();
-                if(confirm("Êtes-vous sûr de vouloir supprimer cette image ?"))
-                {
-                    $('#'+id).parent().fadeOut(1000,function(){
-                        $('#'+id).parent().remove();
-                    });
-                    console.log({id:self.options.fileId,action:"delete"});
-                    $.ajax({
-                       url: $("#"+id+"_preview").data("url"),
-                       type: 'POST',
-                       data:{id:self.options.fileId,action:"delete"},
-                       success: function(response) {
-                            console.log(response);
-                          
-                       }
-                    });
-                }
-                else
-                {
-                    
-                }
-            });
+            })	
 		},
         updateInfo: function(img,selection) {
-        
             if (!selection.width || !selection.height)
                 return;
             var id = $(img).data("id");
             var oImage = $("#"+id+"_preview");
             var scaleX =  $('#'+id+"_thumbnail").width()  / selection.width;
             var scaleY =  $('#'+id+"_thumbnail").height()  / selection.height;
-            var css = {
+  	         $('#'+id+"_thumbnail img").css({
                 width: Math.round(scaleX * oImage.width()),
                 height: Math.round(scaleY * oImage.height()),
                 marginLeft: -Math.round(scaleX * selection.x1),
                 marginTop: -Math.round(scaleY * selection.y1),
                 'min-height': $('#'+id+"_thumbnail").height(),
                 'min-width':   $('#'+id+"_thumbnail").width()
-            };
-            $('#'+id+"_thumbnail img").css(css);
-            $('#'+id+"_thumbnail_modal img").css(css);
+            });
             var x1 = Math.round((selection.x1*$("#"+id+"_preview").get(0).naturalWidth)/$("#"+id+"_preview").width());
             var y1 = Math.round((selection.y1*$("#"+id+"_preview").get(0).naturalHeight)/$("#"+id+"_preview").height());
             var x2 = Math.round((selection.x2*$("#"+id+"_preview").get(0).naturalWidth)/$("#"+id+"_preview").width());
@@ -390,23 +343,20 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                     $("#"+self.options.id+"_logo").fadeOut(1200,function() {
                         $("#"+self.options.id+"_logo").attr("src",e.target.result);
                         $("#"+self.options.id+"_logo").fadeIn(1000);
-                        $("#"+self.options.id+"_logo_modal").attr("src",e.target.result);
-                        $("#"+self.options.id+"_logo_modal").fadeIn(1000);
                     });
                     oImage.attr("src",e.target.result); 
                     self.imgAreaSelect = $('#'+self.options.id+'_preview').imgAreaSelect({
                         onSelectChange: self.updateInfo,
                         parent : $("#"+self.options.id+"_imgarea-parent"),
                         instance: true,
-                        aspectRatio:   $('#'+id+'_ratio').val(),
+                        aspectRatio: self.options.aspectRatio,
                         show: true 
-                        
                     });	
                     $('#'+id+'_x1').val(0);
                     $('#'+id+'_y1').val(0);
                     $('#'+id+'_x2').val(oImage.get(0).naturalWidth);
                     $('#'+id+'_y2').val(oImage.get(0).naturalHeight);
-                    $('#'+id+'_delete').show();					
+                    $("#"+self.options.id+"_btn-crop").show();						
                     self.init(function(){
                            callback();
                     });

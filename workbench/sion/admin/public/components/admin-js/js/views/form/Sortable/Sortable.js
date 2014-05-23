@@ -11,8 +11,8 @@ define(['require',"js/sortable.ajax"],function(require) {"use strict";
 		defaults: {
 
 		},
-		initialize : function(options) {
-		    this.options = _.extend({},this.defaults,options);
+		initialize : function() {
+			this.options = _.extend({}, this.defaults, this.options);
 			this.render();
 		},
 		render : function() {

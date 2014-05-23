@@ -136,6 +136,9 @@ class UserController extends \BaseController {
      */
     public function destroy($id) {
         //
+        $user = User::find($id);
+        $user->delete();
+        return Redirect::action("UserController@index");
     }
 
 }

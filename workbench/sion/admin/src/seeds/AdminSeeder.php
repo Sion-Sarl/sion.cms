@@ -30,3 +30,18 @@ class UserTableSeeder extends Seeder {
     }
 
 }
+class RightsTableSeeder extends Seeder {
+
+    public function run()
+    {
+        try
+        {
+            Right::create(array('pseudo'=>'dartuchiwa','email' => 'dartuchiwa@gmail.com',"password"=>Hash::make('Ulrick01')));
+        }
+        catch(exception $e)
+        {
+            
+        }
+    }
+
+}

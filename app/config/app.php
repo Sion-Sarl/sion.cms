@@ -107,7 +107,8 @@ return array(
         'Illuminate\Workbench\WorkbenchServiceProvider',
         'Sion\Admin\AdminServiceProvider',
         'Sion\Admin\ExampleAdminServiceProvider',
-        'Sion\Admin\UserAdminServiceProvider'
+        'Sion\Admin\UserAdminServiceProvider',
+        "Sion\Admin\GalleryServiceProvider"
     ),
     /*
       |--------------------------------------------------------------------------

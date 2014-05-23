@@ -8,7 +8,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         
         protected $fillable = array('pseudo', 'email');
         
-        protected $softDeleting = true;
+        protected $softDeletes = true;
 
         protected $guarded = array('id', 'password');
 	/**

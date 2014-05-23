@@ -34,10 +34,18 @@
                                 <td>{{$user->email}}</td>
                                 <td></td>
                                 <td>
-                                    {{link_to_action('UserController@edit' , 'Editer',array($user->id),array("class"=>"btn btn-success"))}}
-                                    {{link_to_action('UserController@destroy' , 'Supprimer',array($user->id),array("class"=>"btn btn-danger"))}}
+                                    <div class="col-md-3">
+                                        {{link_to_action('UserController@edit' , 'Editer',array($user->id),array("class"=>"btn btn-success"))}}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ Form::open(array('action' => array('UserController@destroy',$user->id),"method"=>"DELETE")) }}
+
+                                            {{ Form::submit('Supprimer', array('class' => 'btn btn-danger')) }}
+                                        {{ Form::close() }}
+                                    </div>
+                                    
                                 </td>
-                            </tr>
+                            </tr> 
                             @endforeach
                         </tbody>
                     </table>
