@@ -1,0 +1,9 @@
+[23-May-2014 05:33:15 UTC] PHP Fatal error:  Class 'Sion\Admin\AliasLoader' not found in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/src/Sion/Admin/AdminServiceProvider.php on line 30
+[23-May-2014 05:33:25 UTC] PHP Fatal error:  Class 'AliasLoader' not found in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/src/Sion/Admin/AdminServiceProvider.php on line 30
+[23-May-2014 05:33:27 UTC] PHP Fatal error:  Class 'AliasLoader' not found in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/src/Sion/Admin/AdminServiceProvider.php on line 30
+[23-May-2014 05:33:28 UTC] PHP Fatal error:  Class 'AliasLoader' not found in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/src/Sion/Admin/AdminServiceProvider.php on line 30
+[23-May-2014 05:33:29 UTC] PHP Fatal error:  Class 'AliasLoader' not found in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/src/Sion/Admin/AdminServiceProvider.php on line 30
+[23-May-2014 05:33:52 UTC] PHP Fatal error:  Class 'AliasLoader' not found in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/src/Sion/Admin/AdminServiceProvider.php on line 31
+[23-May-2014 05:34:06 UTC] PHP Fatal error:  Call to undefined method Bkwld\Croppa\Facade::url() in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/vendor/illuminate/support/Illuminate/Support/Facades/Facade.php on line 217
+[23-May-2014 05:35:25 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 4529 bytes) in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/vendor/weotch/phpthumb/src/GdThumb.inc.php on line 830
+[23-May-2014 05:35:27 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 18116 bytes) in /home/sionnea/public_html/DEV/_sion/cms/workbench/sion/admin/vendor/weotch/phpthumb/src/GdThumb.inc.php on line 830

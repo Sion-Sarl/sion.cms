@@ -6,6 +6,5 @@ Installation
 Set up
 =====================
 
-For the admin module only add 'Sion\Admin\AdminServiceProvider' in your config/app.php.
-The admin module depending on 'Bkwld\Croppa\ServiceProvider' for image uploading.
+For the admin module add 'Sion\Admin\AdminServiceProvider' in your config/app.php.
 If you want to have the example 'add Sion\Admin\ExampleAdminServiceProvider.'

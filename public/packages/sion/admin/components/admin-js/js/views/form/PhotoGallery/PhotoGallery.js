@@ -2,9 +2,9 @@ define(['require','views/form/PictureResizer/PictureResizer','views/form/Sortabl
  
 	return Backbone.View.extend({
 
-		initialize : function() {
+		initialize : function(options) {
             var self = this;
-			this.options = _.extend({}, this.defaults, this.options);
+			this.options = _.extend({}, this.defaults,options);
             this.options.container = $(this.el).data("container");
             this.options.itemSelector = this.options.container+" "+$(this.el).data("itemselector");
 			this.render();
@@ -17,22 +17,24 @@ define(['require','views/form/PictureResizer/PictureResizer','views/form/Sortabl
             var itemSelector = this.options.itemSelector;
             var container = $(this.options.container);
             var item = $(this.options.itemSelector);
-            new Sortable(
-                {
-                    el: this.el,
-                    itemSelector : itemSelector
-                }
-            );
             item.each(function(){
                 self.clone = $(this).clone(false,false);
                 self.clone.removeData();
                 self.clone.attr("src",null);
                 $(this).data("url",$(self.el).data("upload"));
+                $(this).parent().data("id", $(this).data("id"));
                 new PictureResizer({
                     el:$(this)
                 
                 });
             });
+            new Sortable(
+                {
+                    el: this.el,
+                    itemSelector : this.options.container,
+                    php: $(self.el).data("upload")
+                }
+            );
             if($(this.el).data("add"))
             {
                 
@@ -48,6 +50,7 @@ define(['require','views/form/PictureResizer/PictureResizer','views/form/Sortabl
              var newContainer =  $(this.options.container).first().clone(false,false);
              newContainer.empty();
              newContainer.append(element );
+             newContainer.data("order",$(this.options.container).length+1);
              element.data("url",$(self.el).data("upload"));
              $(this.el).append(newContainer);
                 new PictureResizer({

@@ -5,17 +5,21 @@
         options: {
             sortable: {
                 placeholder: "sortable-li-highlight",
-                itemSelector: "li",
                 stop: function( event, ui ) {
                         var php =  $(this).sortableAjax("option","php");
                         var item = $(this).sortableAjax("option","itemSelector");
                         $(this).children(item ).each(function(){
                             $(this).find("[data-ordre='true']").html($(this).index()+1);
-                            $.ajax({
+                            $(this).data("order",$(this).index()+1);
+                            if($(this).data("id"))
+                            {
+                                $.ajax({
                                   type: "POST",
                                   url: php,
                                   data: {id:$(this).data("id"),order:$(this).index()+1}
-                            });
+                                });
+                            }
+                            
                       });
                 } 
             }

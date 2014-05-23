@@ -107,8 +107,7 @@ return array(
         'Illuminate\Workbench\WorkbenchServiceProvider',
         'Sion\Admin\AdminServiceProvider',
         'Sion\Admin\ExampleAdminServiceProvider',
-        'Sion\Admin\UserAdminServiceProvider',
-        'Bkwld\Croppa\ServiceProvider'
+        'Sion\Admin\UserAdminServiceProvider'
     ),
     /*
       |--------------------------------------------------------------------------
@@ -168,7 +167,6 @@ return array(
         'Str' => 'Illuminate\Support\Str',
         'URL' => 'Illuminate\Support\Facades\URL',
         'Validator' => 'Illuminate\Support\Facades\Validator',
-        'View' => 'Illuminate\Support\Facades\View',
-        'Croppa' => 'Bkwld\Croppa\Facade'
+        'View' => 'Illuminate\Support\Facades\View'
     ),
 );

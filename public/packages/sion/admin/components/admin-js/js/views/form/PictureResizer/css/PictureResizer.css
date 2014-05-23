@@ -1,8 +1,51 @@
-.picture-resizer + p
+.picture-resizer-preview + p
 {
     position: absolute !important;
+}
+.picture-resizer-preview
+{
+    box-sizing:content-box; 
+    -moz-box-sizing:content-box; 
+    -webkit-box-sizing:content-box;
+    max-height: 100%;
+   
 }
 .imgareaselect-outer
 {
     position: absolute !important;
+}
+.picture-resizer-thumbnail
+{
+    overflow:hidden;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.picture-resizer-thumbnail img
+{
+    cursor: pointer;
+}
+.picture-resizer-modal .modal-dialog
+{
+    min-height: 80%;
+    min-height: 80%;
+    max-width: 70%;
+    min-width: 56%;
+}
+.picture-resizer-thumbnail .ribbon
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgb(172, 85, 85);
+    border: 0px solid;
+    color: white;
+    font-size: 25px;
+    padding: 0px 10px;
+    opacity: 0.75;
+}
+.picture-resizer-thumbnail .ribbon:hover
+{
+    opacity: 1;
+    background: rgb(189, 55, 55);
 }

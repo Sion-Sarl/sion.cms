@@ -3,9 +3,8 @@
 namespace Sion\Admin;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\AliasLoader as AliasLoader;
 
-class AdminServiceProvider extends ServiceProvider {
+class AdminGalleryServiceProvider extends ServiceProvider {
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -21,14 +20,6 @@ class AdminServiceProvider extends ServiceProvider {
      */
     public function boot() {
         $this->package('sion/admin');
-        include __DIR__ . "/../../routes.php";
-        
-        //MACRO
-        \HTML::macro('resizer', function($file,$height="200",$width="200",$ratio="")
-        {
-            echo \View::make("admin::macro.resizer",array("file"=>$file,"height"=>$height,"width"=>$width,"ratio"=>$ratio))->render();
-        });
-       
     }
 
     /**
@@ -38,8 +29,6 @@ class AdminServiceProvider extends ServiceProvider {
      */
     public function register() {
         //
-        $this->app->register("Bkwld\Croppa\ServiceProvider");
-        AliasLoader::getInstance()->alias('Croppa', 'Bkwld\Croppa\Facade');
     }
 
     /**

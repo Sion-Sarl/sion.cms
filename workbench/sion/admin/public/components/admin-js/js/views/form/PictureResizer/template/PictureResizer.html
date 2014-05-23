@@ -3,45 +3,82 @@
  <div class="row">
      <div class="col-xs-12 col-md-12">
         <% if(file) { %>
-            <div  id="<%= id %>_thumbnail"  style="overflow:hidden;margin-bottom: 10px;">
+            <div  id="<%= id %>_thumbnail" class="picture-resizer-thumbnail">
+              <button id="<%= id %>_delete" type="button" class="ribbon" >&times;</button>
               <img src="<%= file %>" alt="..." id="<%= id %>_logo" />
             </div>
         <% } else {%>
-            <div  id="<%= id %>_thumbnail"  style="overflow:hidden;margin-bottom: 10px;">
+            <div  id="<%= id %>_thumbnail" class="picture-resizer-thumbnail" >
+              <button style="display: none;" id="<%= id %>_delete" type="button" class="ribbon" >&times;</button>
               <img style="min-height: <%= height %>;min-width: <%= width %>" src="http://placehold.it/<%= height %>&text=<%= encodeURIComponent(text)%>" alt="..." id="<%= id %>_logo"  />
             </div>
         <% } %>
      </div>
  </div>
- <div id="<%= id %>_filelist">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
 <br />
-<p id="<%= id %>_container">
-    <a class="btn btn-primary" id="<%= id %>_btn-add" ><i class="fa fa-plus"></i>Choissisez une image</a>
-    <a class="btn btn-info" id="<%= id %>_btn-crop" ><i class="fa fa-crop"></i>Cropper</a>
-    <a class="btn btn-success" id="<%= id %>_btn-upload" ><i class="fa fa-upload"></i>Upload</a>
-</p>
-<div class="form-group" id="<%= id %>_help">
-    <span class="help-block"></span>
-</div>
-<div class="modal fade" id="<%= id %>_modal">
+<div class="modal fade picture-resizer-modal" id="<%= id %>_modal">
     <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Modal title</h4>
+            <h4 class="modal-title">Editeur d'image</h4>
           </div>
           <div class="modal-body">
-            <div class="row">
-                <div class="col-xs-12">
+            <div class="row"> 
+                <div class="col-xs-8">
                     <div id="<%= id %>_imgarea-parent" style="position: relative;">
-                         <img class="picture-resizer img-responsive" id="<%= id %>_preview" data-fileid="<%= fileId %>" data-id="<%= id %>" data-url="<%= url %>" style="box-sizing:content-box; -moz-box-sizing:content-box; -webkit-box-sizing:content-box;" />
+                         <img class="picture-resizer-preview img-responsive" id="<%= id %>_preview" data-fileid="<%= fileId %>" data-id="<%= id %>" data-url="<%= url %>"/>
                     </div>
                 </div> 
+                <div class="col-xs-4">
+                        <div class="row">
+                            <div  id="<%= id %>_thumbnail_modal" class="picture-resizer-thumbnail">
+                              <img  alt="..." id="<%= id %>_logo_modal" style="min-height: <%= height %>;min-width: <%= width %>" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h4>Dimensions</h4>
+                            <div class="form-horizontal">
+                                 <div class="form-group">
+                                    <label  class="col-sm-2 control-label" >Largeur:</label>
+                                    <div class="col-sm-8">
+                                          <input readonly id="<%= id %>_w" name="w" class="form-control" type="text" placeholder="" />
+                                    </div>
+                                  
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-sm-2 control-label">Hauteur:</label>
+                                    <div class="col-sm-8">
+                                        <input readonly id="<%= id %>_h" name="h" class="form-control" type="text" placeholder="" />
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label  class="col-sm-2 control-label" >Ratio:</label>
+                                    <div class="col-sm-8">
+                                    <input id="<%= id %>_ratio" class="form-control" type="text" placeholder="ex:1:1" value="<%= aspectRatio %>" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="<%= id %>_filelist">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
+                    <div class="form-group" id="<%= id %>_help">
+                        <span class="help-block"></span>
+                    </div>
+                </div>
             </div>
             
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Valider</button>
+            <div id="<%= id %>_container" class="pull-left">
+                <a class="btn btn-primary" id="<%= id %>_btn-add" ><i class="fa fa-plus"></i>Choissisez une image</a>
+                <a class="btn btn-info" id="<%= id %>_btn-crop" ><i class="fa fa-crop"></i>Cropper</a>
+                <a class="btn btn-success" id="<%= id %>_btn-upload" ><i class="fa fa-upload"></i>Upload</a>
+            </div>
+            <button type="button" class="btn btn-default validate" data-dismiss="modal">Valider</button>
           </div>
         </div>
     </div>
@@ -51,5 +88,3 @@
 <input type="hidden" id="<%= id %>_y1" name="y1" />
 <input type="hidden" id="<%= id %>_x2" name="x2" />
 <input type="hidden" id="<%= id %>_y2" name="y2" />
-<input type="hidden" id="<%= id %>_w" name="w" />
-<input type="hidden" id="<%= id %>_h" name="h" />
