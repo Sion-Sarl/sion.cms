@@ -27,6 +27,13 @@ Route::get('contact', function()
 {
 	return View::make('contact');
 });
+Route::get('contact', function()
+{
+	return View::make('contact');
+});
+Route::get('portfolio',function(){
+    return View::make('portfolio');
+});
 Route::post('contact',function(){
     $rules = \Config::get("contact.rule");
     $validator = Validator::make(Input::all(), $rules);

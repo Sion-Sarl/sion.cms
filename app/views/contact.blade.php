@@ -1,9 +1,9 @@
-@extends("layouts.master")
+@extends("casual.layouts.master")
 
 @section("content")
     <div class="container">
-        @include("components.error")
-        @include("components.success")
+        @include("partials.error")
+        @include("partials.success")
         <div class="row">
             <div class="box">
                 <div class="col-lg-12">

@@ -21,18 +21,20 @@
 		"post-install-cmd": [
 			"php artisan clear-compiled",
 			"php artisan optimize",
-                        "php artisan asset:publish",
-                        "php artisan migrate --bench='sion/admin'",
-                        "php artisan db:seed --class='AdminSeeder'",
-                        "php artisan asset:publish --bench='sion/admin'"
+            "php artisan asset:publish",
+            "php artisan migrate --bench='sion/admin'",
+            "php artisan db:seed --class='AdminSeeder'",
+            "php artisan asset:publish --bench='sion/admin'",
+            "composer dumpautoload"
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",
 			"php artisan optimize",
-                        "php artisan asset:publish",
-                        "php artisan migrate --bench='sion/admin'",
-                        "php artisan db:seed --class='AdminSeeder'",
-                        "php artisan asset:publish --bench='sion/admin'"
+            "php artisan asset:publish",
+            "php artisan migrate --bench='sion/admin'",
+            "php artisan db:seed --class='AdminSeeder'",
+            "php artisan asset:publish --bench='sion/admin'",
+            "composer dumpautoload"
 		],
 		"post-create-project-cmd": [
 			"php artisan key:generate"
