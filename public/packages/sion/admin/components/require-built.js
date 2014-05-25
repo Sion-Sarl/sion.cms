@@ -2213,6 +2213,16 @@ define(['bootstrap3','backbone'],function() {
                     })  
                 });
            }
+           if($("[contenteditable='true']").length > 0)
+           {
+                require(['views/form/HtmlEditor/HtmlEditor'],function(HtmlEditor){
+                     new HtmlEditor(
+                            {
+                                editable : $("[contenteditable='true']")
+                            }
+                     );  
+                });
+           }
         }
 	});
 });

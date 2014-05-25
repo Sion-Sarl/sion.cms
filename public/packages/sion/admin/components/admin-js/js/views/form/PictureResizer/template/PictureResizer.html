@@ -1,21 +1,14 @@
-
- <input type="file" id="<%= id %>" style="display: none;" name="<%= name %>" />
- <div class="row">
-     <div class="col-xs-12 col-md-12">
-        <% if(file) { %>
-            <div  id="<%= id %>_thumbnail" class="picture-resizer-thumbnail">
-              <button id="<%= id %>_delete" type="button" class="ribbon" >&times;</button>
-              <img  src="<%= file %>" alt="..." id="<%= id %>_logo" />
-            </div>
-        <% } else {%>
-            <div  id="<%= id %>_thumbnail" class="picture-resizer-thumbnail" >
-              <button style="display: none;" id="<%= id %>_delete" type="button" class="ribbon" >&times;</button>
-              <img style="min-height: <%= height %>;min-width: <%= width %>" src="http://placehold.it/<%= height %>&text=<%= encodeURIComponent(text)%>" alt="..." id="<%= id %>_logo"  />
-            </div>
-        <% } %>
-     </div>
- </div>
-<br />
+<% if(file) { %>
+    <span  id="<%= id %>_thumbnail" class="picture-resizer-thumbnail">
+      <button id="<%= id %>_delete" type="button" class="ribbon" >&times;</button>
+      <img  src="<%= file %>" alt="..." id="<%= id %>_logo" />
+    </span >
+<% } else {%>
+    <span   id="<%= id %>_thumbnail" class="picture-resizer-thumbnail" >
+      <button style="display: none;" id="<%= id %>_delete" type="button" class="ribbon" >&times;</button>
+      <img style="min-height: <%= height %>;min-width: <%= width %>" src="http://placehold.it/<%= height %>&text=<%= encodeURIComponent(text)%>" alt="..." id="<%= id %>_logo"  />
+    </span >
+<% } %>
 <div class="modal fade picture-resizer-modal" id="<%= id %>_modal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -83,7 +76,6 @@
         </div>
     </div>
 </div><!-- /.modal -->
-
 <input type="hidden" id="<%= id %>_x1" name="x1" />
 <input type="hidden" id="<%= id %>_y1" name="y1" />
 <input type="hidden" id="<%= id %>_x2" name="x2" />

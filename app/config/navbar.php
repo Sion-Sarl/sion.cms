@@ -14,6 +14,10 @@ return array(
             "link" => url("blog"),
         ),
         array(
+            "name" => "Portfolio",
+            "link" => url("portfolio"),
+        ),
+        array(
             "name" => "Contact",
             "link" => url("contact")
         )

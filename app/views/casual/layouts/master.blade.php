@@ -16,6 +16,10 @@
 
     <!-- Add custom CSS here -->
     <link href="css/business-casual.css" rel="stylesheet" />
+    
+    @if(Auth::is("admin"))
+          <link href="{{asset('packages/sion/admin/css/navbar.css')}}" rel="stylesheet" />
+    @endif
     @show
 </head>
 
@@ -23,6 +27,9 @@
 
     <div class="brand">Business Casual</div>
     <div class="address-bar">The Plaza | 5483 Start Bootstrap Ave. | Beverly Hills, California 26892 | 555.519.2013</div>
+    @if(Auth::is("admin"))
+        {{HTML::adminTopBar()}}
+    @endif
     @section("navbar")
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -152,6 +159,15 @@
     $('.carousel').carousel({
         interval: 5000
     })
+    </script>
+    <script src="{{asset('packages/sion/admin/components/require.js')}}"></script>
+        <script>
+            requirejs({
+                baseUrl:'packages/sion/admin/components'
+            })
+            require(["admin-js"],function(Admin){
+                new  Admin();
+            });
     </script>
     @show
 </body>

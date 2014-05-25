@@ -1,3 +1,6 @@
+
+
+
 define(['require','views/form/PictureResizer/PictureResizer','views/form/Sortable/Sortable'],function(require,PictureResizer,Sortable) {"use strict";
  
 	return Backbone.View.extend({
@@ -18,9 +21,6 @@ define(['require','views/form/PictureResizer/PictureResizer','views/form/Sortabl
             var container = $(this.options.container);
             var item = $(this.options.itemSelector);
             item.each(function(){
-                self.clone = $(this).clone(false,false);
-                self.clone.removeData();
-                self.clone.attr("src",null);
                 $(this).data("url",$(self.el).data("upload"));
                 $(this).data("additional",$(self.el).data("additional"));
                 $(this).css({

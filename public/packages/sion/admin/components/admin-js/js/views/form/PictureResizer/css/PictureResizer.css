@@ -19,18 +19,18 @@
     overflow:hidden;
     margin-bottom: 10px;
     position: relative;
+    display: inline-block;
+    max-width: inherit;
 }
 
 .picture-resizer-thumbnail img
 {
     cursor: pointer;
+    max-width: inherit;
 }
 .picture-resizer-modal .modal-dialog
 {
-    min-height: 80%;
-    min-height: 80%;
-    max-width: 70%;
-    min-width: 56%;
+    min-width: 1170px;
 }
 .picture-resizer-thumbnail .ribbon
 {

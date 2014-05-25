@@ -10,7 +10,9 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             aspectRatio: "1",
             url: "",
             text:"VOTRE IMAGE",
-            fileId: ""       
+            fileId: "",
+            maxHeight: 2048,
+            maxWidth: 2048       
 		},
 		initialize : function(options) {
             var self = this;
@@ -54,13 +56,23 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             {
                 this.options.additional = $(this.el).data("additional");
             }
+            this.options.className = $(this.el).attr("class");
+            this.options.style = $(this.el).attr("style");
 			this.render();
             
            
 		},
 		render : function() {
             var self = this;
+            var select = $(this.el).clone();
 		    $(this.el).replaceWith(template(this.options));	
+            var positioningProps = ["float","position","width","height","left","top","marginLeft","marginTop","paddingLeft","paddingTop"];
+            var div =  $("#"+this.options.id+"_thumbnail");
+            $("#"+this.options.id+"_thumbnail").attr("class",$("#"+this.options.id+"_thumbnail").attr("class")+" "+this.options.className);
+            for(var i in positioningProps){
+                div.css(positioningProps[i], select.css(positioningProps[i])||"");
+            }
+            $("#"+this.options.id+"_thumbnail").removeClass("img-responsive");
             $("#"+this.options.id+"_thumbnail").height(this.options.height);
             $("#"+this.options.id+"_thumbnail").width(this.options.width);			
             $("#"+this.options.id+"_thumbnail img").height(this.options.height);
@@ -86,7 +98,10 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                  
                 browse_button : self.options.id+"_btn-add", // you can pass in id...
                 container: self.options.id+"_container", // ... or DOM Element itself
-                 
+                resize: {
+                  height: self.options.maxHeight,
+                  width: self.options.maxWidth  
+                },
                 url : this.options.url,
   
              
@@ -154,21 +169,23 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                             }
                             catch(e)
                             {
-                                
+                                throw(e);
                             }
-                            document.getElementById(self.options.id+'_filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+                           
                         });
-                        
+                      
                       
                     },
-             
+                    
                     UploadProgress: function(up, file) {
+                        document.getElementById(self.options.id+'_filelist').innerHTML = '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
                         document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
                         $("#"+self.options.id+"_btn-crop").hide();
                     }, 
              
                     Error: function(up, err) {
                         console.log(err);
+                        uploader.splice();
                     },
                     BeforeUpload: function(up, file) {
                     
@@ -191,11 +208,12 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                         $("#"+self.options.id+"_btn-crop").hide();
                         $("#"+self.options.id+"_modal .close").prop('disabled', true);
                         $("#"+self.options.id+"_modal .validate").prop('disabled', true);
+                        
                     },
-                    UploadComplete: function(up, file){
-                        $("#"+self.options.id+"_btn-crop").show();
+                    UploadComplete: function(up, files){
                         $("#"+self.options.id+"_modal .close").prop('disabled',false);
                         $("#"+self.options.id+"_modal .validate").prop('disabled',false);
+                        uploader.splice();
                     },
                     FileUploaded:function(up,file,info){
                         console.log(info);
@@ -216,10 +234,6 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             $("#"+this.options.id+"_btn-crop").click(function(e){
                 e.preventDefault();
                 $("#"+self.options.id+"_modal").modal({backdrop: 'static'});
-                $("#"+self.options.id+"_modal").find(".modal-dialog").css({
-                  width:($(window).width() < $("#"+self.options.id+"_preview").get(0).naturalWidth)?$(window).width():$("#"+self.options.id+"_preview").get(0).naturalWidth, //probably not needed
-                  height:($(window).height() < $("#"+self.options.id+"_preview").get(0).naturalHeight)?$(window).height():$("#"+self.options.id+"_preview").get(0).naturalHeight, //probably not needed 
-                });
                 if(self.options.fileFull)
                 {
                     $("#"+self.options.id+"_logo").attr("src",self.options.fileFull);
@@ -392,11 +406,6 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             var self = this;
             var oFile = file;
             var id = self.options.id;
-            if(this.jcrop_api && oFile)
-            {
-                this.jcrop_api.destroy();
-            }
-        
             // check for image type (jpg and png are allowed)
             var rFilter = this.options.allowed;
             if(!rFilter.test(oFile.name))
@@ -431,33 +440,59 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                         $("#"+self.options.id+"_logo_modal").attr("src",e.target.result);
                         $("#"+self.options.id+"_logo_modal").fadeIn(1000);
                     });
-                    oImage.attr("src",e.target.result); 
-                    self.imgAreaSelect = $('#'+self.options.id+'_preview').imgAreaSelect({
-                        onSelectChange: self.updateInfo,
-                        parent : $("#"+self.options.id+"_imgarea-parent"),
-                        instance: true,
-                        aspectRatio:   $('#'+id+'_ratio').val(),
-                        onInit: function(){
-                            self.init(function(){
-                                callback();
-                            });
+                      //RESIZE
+                    var tempImg = new Image();
+                    tempImg.src = oReader.result;
+                    var MAX_WIDTH = self.options.maxWidth;
+                    var MAX_HEIGHT = self.options.maxHeight;
+                    var tempW = tempImg.width;
+                    var tempH = tempImg.height;
+                    if (tempW > tempH) {
+                        if (tempW > MAX_WIDTH) {
+                           tempH *= MAX_WIDTH / tempW;
+                           tempW = MAX_WIDTH;
                         }
-                        
-                    });	
-                    $("#"+self.options.id+"_thumbnail_modal").width(self.options.width);	
-                    $("#"+self.options.id+"_thumbnail_modal img").width(self.options.width);
-                    $("#"+self.options.id+"_thumbnail_modal").height($("#"+self.options.id+"_thumbnail_modal"));
-                    $("#"+self.options.id+"_thumbnail_modal img").height($("#"+self.options.id+"_thumbnail_modal img"));
-                    $('#'+id+'_x1').val(0);
-                    $('#'+id+'_y1').val(0);
-                    $('#'+id+'_x2').val(oImage.get(0).naturalWidth);
-                    $('#'+id+'_y2').val(oImage.get(0).naturalHeight);
-                    $('#'+id+'_h').val(oImage.height());
-                    $('#'+id+'_w').val(oImage.width());
-                    $('#'+id+'_delete').show();					
-                  
-                 
-
+                    } else {
+                        if (tempH > MAX_HEIGHT) {
+                           tempW *= MAX_HEIGHT / tempH;
+                           tempH = MAX_HEIGHT;
+                        }
+                    }
+             
+                    var canvas = document.createElement('canvas');
+                    canvas.width = tempW;
+                    canvas.height = tempH;
+                    var ctx = canvas.getContext("2d");
+                    ctx.drawImage(tempImg, 0, 0, tempW, tempH);
+                    var dataURL = oReader.result;
+                    oImage.attr("src",canvas.toDataURL("image/jpeg"));
+                    oImage.load(function(){
+                        ctx.clearRect(0, 0,  tempW, tempH);
+                        ctx.restore();
+                        self.imgAreaSelect = $('#'+self.options.id+'_preview').imgAreaSelect({
+                            onSelectChange: self.updateInfo,
+                            parent : $("#"+self.options.id+"_imgarea-parent"),
+                            instance: true,
+                            aspectRatio:   $('#'+id+'_ratio').val()
+                            
+                        });	
+                        self.init(function(){
+                                $("#"+self.options.id+"_thumbnail_modal").width(self.options.width);	
+                                $("#"+self.options.id+"_thumbnail_modal img").width(self.options.width);
+                                $("#"+self.options.id+"_thumbnail_modal").height($("#"+self.options.id+"_thumbnail_modal"));
+                                $("#"+self.options.id+"_thumbnail_modal img").height($("#"+self.options.id+"_thumbnail_modal img"));
+                                $('#'+id+'_x1').val(0);
+                                $('#'+id+'_y1').val(0);
+                                $('#'+id+'_x2').val(oImage.get(0).naturalWidth);
+                                $('#'+id+'_y2').val(oImage.get(0).naturalHeight);
+                                $('#'+id+'_h').val(oImage.get(0).naturalHeight);
+                                $('#'+id+'_w').val(oImage.get(0).naturalWidth);
+                                $('#'+id+'_delete').show();	
+                                callback();
+                        });	
+                    
+                    }); 
+                    			
             };
              // read selected file as DataURL
             oReader.readAsDataURL(oFile);

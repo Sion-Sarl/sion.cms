@@ -1,0 +1,36 @@
+.navbar-admin{
+    height: 48px;
+    background: rgba(0, 0, 0, 0.7);
+}
+.navbar-admin .navbar-nav
+{
+    float: left;
+    display: block;
+    font-size: 1em;
+}
+.navbar-admin .nav>li>a
+{
+    padding: 0px;
+    
+}
+.navbar-admin .navbar-nav > li > a {
+    padding-top: 15px; 
+    padding-bottom: 15px; 
+    color: #8B8B8B;
+}
+.navbar-admin .navbar-nav > .active > a, .navbar-admin .navbar-nav > .active > a:hover, .navbar-admin .navbar-nav > .active > a:focus
+{
+    background: transparent;
+    color:white;
+}
+.navbar-admin .navbar-nav > li > a
+{
+    background: transparent;
+    color:white;
+}
+.navbar-admin .navbar-nav > li > a:hover, .navbar-admin .navbar-nav > li > a:focus{
+    color: white;
+}
+.navbar-admin  .navbar-nav > li > a {
+    color: #8B8B8B;
+}
