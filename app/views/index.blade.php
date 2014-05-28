@@ -50,6 +50,6 @@
         </div>
 
     </div>
-    <!-- /.container --
+    <!-- /.container -->
 
 @overwrite
