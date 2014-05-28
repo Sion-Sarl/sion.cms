@@ -9,16 +9,15 @@ requirejs.config({
         "holder": "https://cdnjs.cloudflare.com/ajax/libs/holder/2.2.0/holder",
         "imgareaselect": "admin-js/js/jquery.imgareaselect/scripts/jquery.imgareaselect",
         "ckeditor": "admin-js/js/ckeditor/adapters/jquery",
-        "plupload": "admin-js/js/moxiecode/plupload.full.min"
+        "plupload": "admin-js/js/moxiecode/plupload.full.min",
+        "lightbox": "admin-js/js/lightbox/js/lightbox.min",
+        "masonry": "admin-js/js/masonry",
+        "imagesloaded": "admin-js/js/imagesloaded"
    },
    "shim" : {
        "imgareaselect":
        {
            "deps":["jquery","css!js/jquery.imgareaselect/css/imgareaselect-animated.css"]
-       },
-       "bootstrap-wysihtml5-0.0.2.min":
-       {
-            "deps":["bootstrap3","css!https://www.site.sion.nc/codelgniter/application/modules/admin/views/templates-admin/js/lib/css/wysiwyg-color.css','css!https://www.site.sion.nc/codelgniter/application/modules/admin/views/templates-admin/js/lib/css/bootstrap-wysihtml5-0.0.2.css","wysihtml5"]
        },
        "ckeditor":
        {
@@ -27,13 +26,20 @@ requirejs.config({
        "backbone":
        {
             "deps":["jquery","underscore"]
+       },
+       "lightbox":
+       {
+            "deps":["jquery","css!js/lightbox/css/lightbox.css"]
+       }, 
+       "masonry":
+       {
+            "deps":["admin-js/js/jquery.bridget"]
        }
     }
 });
-define(['bootstrap3','backbone'],function() {
+define(['masonry','bootstrap3','backbone'],function(Masonry) {
     "use strict";
- 
-	return Backbone.View.extend({
+    var AdminView = Backbone.View.extend({
 		defaults: {
 
 		},
@@ -134,16 +140,49 @@ define(['bootstrap3','backbone'],function() {
                     })  
                 });
            }
-           if($("[contenteditable='true']").length > 0)
+           if($("[data-editable='true']").length > 0)
            {
                 require(['views/form/HtmlEditor/HtmlEditor'],function(HtmlEditor){
                      new HtmlEditor(
                             {
-                                editable : $("[contenteditable='true']")
+                                editable : $("[data-editable='true']")
                             }
                      );  
                 });
            }
         }
 	});
+    var UserView = Backbone.View.extend({
+		defaults: {
+
+		},
+		initialize : function() {
+			this.options = _.extend({}, this.defaults, this.options);
+			this.render();
+		},
+        render: function() {
+            if($(".masonry").length > 0)
+           {
+                require(['masonry',"imagesloaded"],function(Masonry,imagesLoaded){
+                    $(".masonry").each(function(){
+                        var self= $(this);
+                        imagesLoaded($(this).get(0),function(){
+                            self.masonry();
+                        });
+                    });
+                });
+           }
+           if($("[data-lightbox]").length > 0)
+           {
+                require(["lightbox"],function(){
+                    
+                });
+           }
+           
+        }
+	});
+	return {
+	   UserView:UserView,
+       AdminView:AdminView
+	}
 });

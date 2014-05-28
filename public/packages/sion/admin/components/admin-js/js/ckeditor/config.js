@@ -35,4 +35,6 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Make dialogs simpler.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+    config.extraPlugins = 'sourcedialog';
+    config.disableAutoInline = false;
 };

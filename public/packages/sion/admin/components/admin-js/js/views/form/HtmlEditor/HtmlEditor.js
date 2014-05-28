@@ -7,14 +7,24 @@ define(['require','text!views/form/HtmlEditor/template/HtmlEditor.html','css!//n
             var self = this;
 			this.options = _.extend({},this.defaults,options);
             this.options = _.extend({},  this.options,$("[data-type='html-editor-save-btn']").data());
-			this.render();
+            this.render();
 		},
         render: function()
         {
             var self = this;
             $("[data-type='html-editor-save-btn']").replaceWith(template());
+             $(self.options.editable).each(function(){
+                   if($(this).attr("id"))
+                   {
+                     $(this).attr('contenteditable','true');
+                     $(this).ckeditor();
+                     $(this).addClass("editable");
+                   }
+                    
+            });
             $("#html-editor-save").click(function(){
                 var data = self.getDataJson();
+                console.log(data);
                 $.post(self.options.url,data,function(){
                     alert("Données enregistrées");
                 }).fail(function(){
@@ -25,10 +35,19 @@ define(['require','text!views/form/HtmlEditor/template/HtmlEditor.html','css!//n
         },
         getDataJson: function(){
             var self = this;
-            var json= [];
+            var json= {html: []};
             $(self.options.editable).each(function(){
-                    var data = CKEDITOR.instances[$(this).attr('id')].getData();
-                    json.push({id:$(this).attr('id'),data:data});
+                    if(CKEDITOR.instances[$(this).attr('id')])
+                    {
+                        var data = CKEDITOR.instances[$(this).attr('id')].getData();
+                        json.html.push({id:$(this).attr('id'),data:data});
+                    }
+                    else
+                    {
+                        console.log(
+                        $(this).html()+" \n has no id");
+                    }
+                    
             });
             return json;
         }

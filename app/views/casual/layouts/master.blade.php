@@ -161,14 +161,26 @@
     })
     </script>
     <script src="{{asset('packages/sion/admin/components/require.js')}}"></script>
-        <script>
-            requirejs({
-                baseUrl:'packages/sion/admin/components'
-            })
-            require(["admin-js"],function(Admin){
-                new  Admin();
-            });
+    <script>
+        requirejs({
+                    baseUrl:'packages/sion/admin/components'
+        })
     </script>
+    @if(Auth::is('admin'))
+        <script>
+            
+                require(["admin-js"],function(views){
+                    new  views.AdminView();
+                });
+        </script>
+    @else
+        <script>
+            
+                require(["admin-js"],function(views){
+                    new  views.UserView();
+                });
+        </script>
+    @endif
     @show
 </body>
 

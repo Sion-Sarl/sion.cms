@@ -5,7 +5,7 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
 		defaults: {
 			allowed : /.jpg|.png|.gif|.jpeg$/i,			
             height: 200,			
-            width: 200,
+            width: "100%",
             max_size: 500000000,
             aspectRatio: "1",
             url: "",
@@ -56,27 +56,68 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             {
                 this.options.additional = $(this.el).data("additional");
             }
+            if($(this.el).data("order"))
+            {
+                this.options.order = $(this.el).data("order");
+            }
+            if($(this.el).data("x1") != "undefined")
+            {
+                this.options["x1"] = $(this.el).data("x1");
+            }
+             if($(this.el).data("x2") !== "undefined")
+            {
+                this.options["x2"] = $(this.el).data("x2");
+            }
+            if($(this.el).data("y1") !== "undefined")
+            {
+                this.options["y1"] = $(this.el).data("y1");
+            }
+            if($(this.el).data("y2") !== "undefined")
+            {
+                this.options["y2"] = $(this.el).data("y2");
+            }
             this.options.className = $(this.el).attr("class");
             this.options.style = $(this.el).attr("style");
-			this.render();
-            
-           
+            this.render();
 		},
 		render : function() {
             var self = this;
-            var select = $(this.el).clone();
-		    $(this.el).replaceWith(template(this.options));	
-            var positioningProps = ["float","position","width","height","left","top","marginLeft","marginTop","paddingLeft","paddingTop"];
-            var div =  $("#"+this.options.id+"_thumbnail");
-            $("#"+this.options.id+"_thumbnail").attr("class",$("#"+this.options.id+"_thumbnail").attr("class")+" "+this.options.className);
-            for(var i in positioningProps){
-                div.css(positioningProps[i], select.css(positioningProps[i])||"");
+            var positioningProps = ["height","width","float","left","top","margin-left","margin-top","margin-bottom","padding-bottom","margin-right","padding-right","padding-left","padding-top","padding","margin"];
+            var style= {};
+            for(var i in positioningProps ){
+                style[positioningProps[i]] = $(this.el).css(positioningProps[i]);
             }
-            $("#"+this.options.id+"_thumbnail").removeClass("img-responsive");
-            $("#"+this.options.id+"_thumbnail").height(this.options.height);
-            $("#"+this.options.id+"_thumbnail").width(this.options.width);			
-            $("#"+this.options.id+"_thumbnail img").height(this.options.height);
-            $("#"+this.options.id+"_thumbnail img").width(this.options.width);
+            if(typeof this.options.width === 'string' && this.options.width.indexOf("%") > -1)
+            {
+                this.options.placeHolderWidth = (parseInt(this.options.width)/100)*$(this.el).parent().width();
+            }
+            else
+            {
+                this.options.placeHolderWidth = this.options.width;
+            }
+            this.options.widthPlaceHolder =          
+		    $(this.el).replaceWith(template(this.options));	
+
+            var div =  $("#"+this.options.id+"_thumbnail");
+            $("#"+this.options.id+"_thumbnail img").attr("class",this.options.className);
+            for(var i in positioningProps ){
+                if(style[positioningProps[i]] != 0)
+                {
+                    div.css(positioningProps[i],style[positioningProps[i]]||""); 
+                }
+                
+            }
+            console.log(this.options.width);
+            $("#"+self.options.id+"_thumbnail img").width( this.options.width);
+            $("#"+self.options.id+"_thumbnail").width( this.options.width);
+            if($("#"+self.options.id+"_thumbnail").height() == 0)
+            {
+                $("#"+self.options.id+"_thumbnail").height($("#"+self.options.id+"_thumbnail img").width());
+            }
+            if(this.options.order)
+            {
+                $("#"+this.options.id+"_thumbnail img").data("order",this.options.order);
+            }
             if(this.options.file)
             {
                 $("#"+this.options.id+"_thumbnail_modal").height(this.options.height);
@@ -169,7 +210,7 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                             }
                             catch(e)
                             {
-                                throw(e);
+                                
                             }
                            
                         });
@@ -190,13 +231,14 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                     BeforeUpload: function(up, file) {
                     
                         // Called right before the upload for a given file starts, can be used to cancel it if required
+                        uploader.settings.multipart_params["id"] = self.options.fileId;
                         uploader.settings.multipart_params["x1"] = parseInt($('#'+id+'_x1').val());
                         uploader.settings.multipart_params["x2"] = parseInt($('#'+id+'_x2').val());
                         uploader.settings.multipart_params["y1"] = parseInt($('#'+id+'_y1').val());
                         uploader.settings.multipart_params["y2"] = parseInt($('#'+id+'_y2').val());
-                        uploader.settings.multipart_params["height"] =parseInt(self.options.height);
-                        uploader.settings.multipart_params["width"] = parseInt(self.options.width);
-                        uploader.settings.multipart_params["order"] = parseInt($("#"+self.options.id).parent().data("order"));
+                        uploader.settings.multipart_params["height"] =  parseInt($('#'+id+'_h').val());
+                        uploader.settings.multipart_params["width"] = parseInt($('#'+id+'_w').val());
+                        uploader.settings.multipart_params["order"] = parseInt($("#"+self.options.id+"_thumbnail img").data("order"));
                         console.log(self.options.additional);
                         if(self.options.additional)
                         {
@@ -230,22 +272,25 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             $("#"+this.options.id+"_btn-add").click(function(e) {
                 e.preventDefault();
             });
+            
             $("#"+self.options.id+"_modal").appendTo($("body"));
+            
+            if(self.options.fileFull)
+            {
+                $("#"+self.options.id+"_logo").attr("src",self.options.fileFull);
+            }
+            $("#"+self.options.id+"_logo_modal").attr("src",$("#"+self.options.id+"_logo").attr("src"));
+            
             $("#"+this.options.id+"_btn-crop").click(function(e){
                 e.preventDefault();
                 $("#"+self.options.id+"_modal").modal({backdrop: 'static'});
-                if(self.options.fileFull)
-                {
-                    $("#"+self.options.id+"_logo").attr("src",self.options.fileFull);
-                }
-                $("#"+self.options.id+"_logo_modal").attr("src",$("#"+self.options.id+"_logo").attr("src"));
-        
-                
             });
             $("#"+self.options.id+"_logo").click(function(e){
                  e.preventDefault();
                  $("#"+self.options.id+"_btn-crop").click();
             });
+            
+            
             if(!this.options.file )
             {
                $("#"+this.options.id+"_btn-crop").hide();
@@ -264,23 +309,33 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                 {
                      $("#"+self.options.id+"_preview").attr("src",self.options.fileFull);  
                 }
-                self.imgAreaSelect = $('#'+self.options.id+'_preview').imgAreaSelect({
+                $("#"+self.options.id+"_preview").load(function(){
+                    self.imgAreaSelect = $('#'+self.options.id+'_preview').imgAreaSelect({
                         onSelectChange: self.updateInfo,
                         parent : $("#"+self.options.id+"_imgarea-parent"),
                         instance: true,
                         aspectRatio: self.options.aspectRatio,
                         movable: true,
                         onInit: function(){
-                            var x1 = Math.round(($(self.el).data("x1")*$("#"+id+"_preview").get(0).width)/$("#"+id+"_preview").get(0).naturalWidth);
-                            var y1 = Math.round(($(self.el).data("y1")*$("#"+id+"_preview").get(0).height)/$("#"+id+"_preview").get(0).naturalHeight);
-                            var x2 = Math.round(($(self.el).data("x2")*$("#"+id+"_preview").get(0).width)/$("#"+id+"_preview").get(0).naturalWidth);
-                            var y2 = Math.round(($(self.el).data("y2")*$("#"+id+"_preview").get(0).height)/$("#"+id+"_preview").get(0).naturalHeight);	
+                            console.log(self.options);
+                            var x1 = Math.round((self.options["x1"]*$("#"+id+"_preview").get(0).width)/$("#"+id+"_preview").get(0).naturalWidth);
+                            var y1 = Math.round((self.options["y1"]*$("#"+id+"_preview").get(0).height)/$("#"+id+"_preview").get(0).naturalHeight);
+                            var x2 = Math.round((self.options["x2"]*$("#"+id+"_preview").get(0).width)/$("#"+id+"_preview").get(0).naturalWidth);
+                            var y2 = Math.round((self.options["y2"]*$("#"+id+"_preview").get(0).height)/$("#"+id+"_preview").get(0).naturalHeight);	
                             console.log(x1,y1,x2,y2);	
                             self.imgAreaSelect.setSelection(x1,y1,x2,y2);
                             self.imgAreaSelect.setOptions({ show: true });
                             self.imgAreaSelect.update();    
+                            $('#'+id+'_x1').val(self.options["x1"]);
+                            $('#'+id+'_y1').val(self.options["y1"]);
+                            $('#'+id+'_x2').val(self.options["x2"]);
+                            $('#'+id+'_y2').val(self.options["y2"]);
+                            $('#'+id+'_h').val(parseInt($("#"+id+"_thumbnail img").height()));
+                            $('#'+id+'_w').val(parseInt($("#"+id+"_thumbnail img").width()));
                         }
-                });	
+                    });	
+                });
+                
             }
             $("#"+self.options.id+"_modal").on('hide.bs.modal', function (e) {
                 
@@ -293,24 +348,29 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                         "height":  parseInt(self.options.height),
                         "id": $("#"+id+"_preview").data("fileid")
                 };
-                if(data.x1 != 0 || data.x2 != 0 || data.y1 != 0 || data.y2 != 0)
+                if(self.options.file)
                 {
-                     $.ajax({
-                       url: $("#"+id+"_preview").data("url"),
-                       type: 'POST',
-                       dataType: 'json',
-                       data:data,
-                       success: function(response) {
-                            console.log(response);
-                          
-                       }
-                    });
+                    if(data.x1  || data.x2  || data.y1  || data.y2)
+                    {
+                        console.log(data);
+                         $.ajax({
+                           url: $("#"+id+"_preview").data("url"),
+                           type: 'POST',
+                           dataType: 'json',
+                           data:data,
+                           success: function(response) {
+                                console.log(response);
+                              
+                           }
+                        });
+                    }
+                    else
+                    {
+                        alert("Vous devez selectionner un zone");
+                        e.preventDefault();
+                    }
                 }
-                else
-                {
-                    alert("Vous devez selectionner un zone");
-                    e.preventDefault();
-                }
+                $('#'+self.options.id+"_thumbnail").parent().parent().trigger("pictureResizer.updated"); 
                
             });
             $('#'+id+'_ratio').change(function(){
@@ -324,10 +384,12 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             });
             $("#"+id+"_delete").click(function(e){
                 e.preventDefault();
-                if(confirm("Êtes-vous sûr de vouloir supprimer cette image ?"))
+                if(confirm("Êtes vous sûr de vouloir supprimer cette image ?"))
                 {
-                    $('#'+id).parent().fadeOut(1000,function(){
-                        $('#'+id).parent().remove();
+                  
+                    $('#'+id+"_thumbnail").parent().fadeOut(1000,function(){
+                        var parent = $('#'+id+"_thumbnail").parent();
+                        $('#'+id+"_thumbnail").parent().parent().trigger("pictureResizer.deleted",[parent]);
                     });
                     console.log({id:self.options.fileId,action:"delete"});
                     $.ajax({
@@ -347,13 +409,21 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             });
 		},
         updateInfo: function(img,selection) {
-        
+            console.log(selection);
             if (!selection.width || !selection.height)
                 return;
             var id = $(img).data("id");
-            var oImage = $("#"+id+"_preview");
+            var thumbnail = $("#"+id +"_thumbnail_modal");
+            var preview = $("#"+id +"_preview");
+            var height = parseInt((thumbnail.width()* selection.height)/selection.width);
             var scaleX =  $('#'+id+"_thumbnail").width()  / selection.width;
             var scaleY =  $('#'+id+"_thumbnail").height()  / selection.height;
+          
+
+            var oImage = $("#"+id+"_preview");
+            $('#'+id+"_thumbnail").height(height);
+            $('#'+id+"_thumbnail_modal").height(height);
+
             var css = {
                 width: Math.round(scaleX * oImage.width()),
                 height: Math.round(scaleY * oImage.height()),
@@ -383,8 +453,8 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
             $('#'+id+'_y1').val(y1);
             $('#'+id+'_x2').val(x2);
             $('#'+id+'_y2').val(y2);
-            $('#'+id+'_w').val(w);
-            $('#'+id+'_h').val(h);  
+            $('#'+id+'_w').val($('#'+id+"_thumbnail").width());
+            $('#'+id+'_h').val( $('#'+id+"_thumbnail_modal").height()); 
         },
         clearInfo: function()
         {
@@ -466,6 +536,7 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                     ctx.drawImage(tempImg, 0, 0, tempW, tempH);
                     var dataURL = oReader.result;
                     oImage.attr("src",canvas.toDataURL("image/jpeg"));
+                    $("#"+self.options.id+"_thumbnail_modal img").attr("src",canvas.toDataURL("image/jpeg"));
                     oImage.load(function(){
                         ctx.clearRect(0, 0,  tempW, tempH);
                         ctx.restore();
@@ -479,15 +550,26 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                         self.init(function(){
                                 $("#"+self.options.id+"_thumbnail_modal").width(self.options.width);	
                                 $("#"+self.options.id+"_thumbnail_modal img").width(self.options.width);
-                                $("#"+self.options.id+"_thumbnail_modal").height($("#"+self.options.id+"_thumbnail_modal"));
-                                $("#"+self.options.id+"_thumbnail_modal img").height($("#"+self.options.id+"_thumbnail_modal img"));
+                                var thumbnail = $("#"+self.options.id+"_thumbnail_modal");
+                                var preview = $("#"+self.options.id+"_preview");
+                                var height = parseInt((thumbnail.width() * preview.height())/preview.width());
+                                
+                                $("#"+self.options.id+"_thumbnail_modal").height(height);
+                                
+                                $("#"+self.options.id+"_thumbnail").width(self.options.width);	
+                                $("#"+self.options.id+"_thumbnail img").width(self.options.width);
+                                
+                                $("#"+self.options.id+"_thumbnail").height(height);
+                                $("#"+self.options.id+"_thumbnail img").height(height);
+                                
                                 $('#'+id+'_x1').val(0);
                                 $('#'+id+'_y1').val(0);
                                 $('#'+id+'_x2').val(oImage.get(0).naturalWidth);
                                 $('#'+id+'_y2').val(oImage.get(0).naturalHeight);
-                                $('#'+id+'_h').val(oImage.get(0).naturalHeight);
-                                $('#'+id+'_w').val(oImage.get(0).naturalWidth);
+                                $('#'+id+'_h').val(height);
+                                $('#'+id+'_w').val(thumbnail.width());
                                 $('#'+id+'_delete').show();	
+                                $(self.el).parent().parent().trigger("pictureResizer.loaded");
                                 callback();
                         });	
                     
@@ -512,6 +594,19 @@ define(['require','text!views/form/PictureResizer/template/PictureResizer.html',
                return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
             };
             return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+        },
+        css: function(a){
+            var sheets = document.styleSheets, o = [];
+            a.matches = a.matches || a.webkitMatchesSelector || a.mozMatchesSelector || a.msMatchesSelector || a.oMatchesSelector;
+            for (var i in sheets) {
+                var rules = sheets[i].rules || sheets[i].cssRules;
+                for (var r in rules) {
+                    if (a.matches(rules[r].selectorText)) {
+                        o.push(rules[r].cssText);
+                    }
+                }
+            }
+            return o;
         }
 	});
 });

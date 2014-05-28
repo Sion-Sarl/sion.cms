@@ -6,7 +6,7 @@
 <% } else {%>
     <span   id="<%= id %>_thumbnail" class="picture-resizer-thumbnail" >
       <button style="display: none;" id="<%= id %>_delete" type="button" class="ribbon" >&times;</button>
-      <img style="min-height: <%= height %>;min-width: <%= width %>" src="http://placehold.it/<%= height %>&text=<%= encodeURIComponent(text)%>" alt="..." id="<%= id %>_logo"  />
+      <img style="min-width: <%= width %>" src="http://placehold.it/<%= placeHolderWidth %>&text=<%= encodeURIComponent(text)%>" alt="..." id="<%= id %>_logo"  />
     </span >
 <% } %>
 <div class="modal fade picture-resizer-modal" id="<%= id %>_modal">

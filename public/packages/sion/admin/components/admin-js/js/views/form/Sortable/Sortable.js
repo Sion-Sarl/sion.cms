@@ -16,7 +16,9 @@ define(['require',"js/sortable.ajax"],function(require) {"use strict";
 			this.render();
 		},
 		render : function() {
+		    var self = this;
             $(this.el).sortableAjax(this.options);
+            
 		}
 	});
 });

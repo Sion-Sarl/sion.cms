@@ -21,6 +21,8 @@
     position: relative;
     display: inline-block;
     max-width: inherit;
+    z-index: 999;
+    position: relative;
 }
 
 .picture-resizer-thumbnail img
@@ -56,4 +58,12 @@
     position: relative;
     max-width: 345px;
     max-height: 420px;
+}
+.carousel-control
+{
+    z-index: 999;
+}
+.carousel-indicators
+{
+    display: none;
 }
