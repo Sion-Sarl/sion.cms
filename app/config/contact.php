@@ -6,11 +6,12 @@
  * and open the template in the editor.
  */
 return array(
+    "site.name"=>"Business casual",
     "rule" => array( 
         'name' => 'required',
         'email' => 'required|email',
-        'message' => 'required'
-    )
-    
+        'text' => 'required'
+    ),
+    "to"=>"dartuchiwa@gmail.com"
     
 );
