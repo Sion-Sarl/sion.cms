@@ -1,0 +1,24 @@
+.html-editor-save
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 999999;
+    height: 60px;
+    width: 60px;
+    border: 0px solid;
+    background: rgb(158, 196, 118);
+    box-shadow: inset -2px -2px 10px rgba(255,255,255,0.5);
+}
+.html-editor-save i
+{
+    color: white;
+     behavior: url(-ms-transform.htc);
+    -moz-transform: rotate(-25deg);
+    -webkit-transform: rotate(-25deg);
+    -o-transform: rotate(-25deg);
+    -ms-transform: rotate(-25deg);
+    font-size: 25px;
+}
+.editable{ padding: 10px; outline: 3px dashed #CCC; } 
+.editable:hover{ background: rgba(255, 255, 153, 1); outline: 3px dashed #0090D2; }

@@ -32,13 +32,15 @@ Route::post('contact',function(){
     $validator = Validator::make(Input::all(), $rules);
     if ($validator->fails())
     {
-        return Redirect::to('contact')->withInput(Input::all())->withErrors($validator)->with('error',"Votre message n'a pas ete envoyee");
+        return Redirect::to('contact')->withInput(Input::all())->withErrors($validator)->with('error',"Votre message n'a pas été envoyée");
     } 
     else {
-        Mail::send('emails.welcome',Input::all(), function($message)
+        Mail::send('emails.contact',Input::all(), function($message)
         {
-            $message->to('foo@example.com', 'John Smith')->subject('Contact via le site!');
+            $name = Input::get("name");
+            $message->to("dartuchiwa@gmail.com", 'Contact')->replyTo(Input::get("email"),$name)->subject('Contact via le site!');
         });
+        return Redirect::to('contact')->with('success',"Votre message a bien été envoyée");
     }
 });
 Route::get('portfolio',function(){

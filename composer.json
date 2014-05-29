@@ -18,6 +18,12 @@
 			"app/tests/TestCase.php"
 		]
 	},
+    "version": "1.0.0-alpha",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "component-dir": "public/components"
+    },
 	"scripts": {
 		"post-install-cmd": [
 			"php artisan clear-compiled",

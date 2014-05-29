@@ -58,6 +58,36 @@
         @show
         <!-- Page content -->
         <div id="page-content-wrapper">
+            <nav class="navbar navbar-default navbar-fixed-top content-header">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header page-scroll">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#page-top"><img class="img-responsive logo" src="{{asset('img/logo.png')}}" /></a>
+                    </div>
+        
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="navbar-collapse collapse" id="bs-navbar-collapse-1" style="height: 1px;">
+                            <ul class="nav navbar-nav navbar-right">
+                            @foreach(Config::get("navbar.menu") as $menu)
+                                <li class="page-scroll" @if(Request::url() == $menu["link"]) class='active' @endif>
+                                     <a  href="{{{$menu["link"]}}}">{{{$menu["name"]}}}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+                @if(Auth::is('admin'))
+                    <button style="display: none;" data-type='html-editor-save-btn' data-url='{{action('HtmlController@saveOrUpdate')}}'></button>
+                @endif
+            </nav>
             @section("content")
             <div class="content-header">
                 <h1>
@@ -94,10 +124,10 @@
     </div>
     @section("js")
     <!-- JavaScript -->
-        <script src="{{asset('packages/sion/admin/components/require.js')}}"></script>
+        <script src="{{asset('components/require.js')}}"></script>
         <script>
             requirejs({
-                        baseUrl:'packages/sion/admin/components'
+                        baseUrl:'components'
             })
         </script>
         @if(Auth::is('admin'))

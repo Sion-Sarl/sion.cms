@@ -23,7 +23,7 @@ return array(
       | your application so that it is used when running Artisan tasks.
       |
      */
-    'url' => 'http://localhost.laravel',
+    'url' => 'http://cleancar.sion.nc',
     /*
       |--------------------------------------------------------------------------
       | Application Timezone
@@ -106,7 +106,6 @@ return array(
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
         'Sion\Admin\AdminServiceProvider',
-        'Sion\Admin\ExampleAdminServiceProvider',
         'Sion\Admin\UserAdminServiceProvider',
         "Sion\Admin\GalleryServiceProvider"
     ),

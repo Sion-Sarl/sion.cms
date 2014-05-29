@@ -8,7 +8,6 @@
             <div class="col-lg-12 box">
                     <h2 class="intro-text text-center">Nous contacter
                     </h2>
-                    <p>This contact form is just the form elements, it is not a working form. You will have to make the form work by yourself, or take it out if you can't figure out how to make it work.</p>
                     <form role="form" action="{{url("contact")}}" method="POST"> 
                             <div class="form-group col-lg-4">
                                 <label>Nom</label>
@@ -25,11 +24,11 @@
                             <div class="clearfix"></div>
                             <div class="form-group col-lg-12">
                                 <label>Message</label>
-                                <textarea  class="form-control" name="message" rows="6">{{ Input::old('message') }}</textarea> {{{$errors->first("message")}}}
+                                <textarea  class="form-control" name="text" rows="6">{{ Input::old('text') }}</textarea> {{{$errors->first("message")}}}
                             </div>
                             <div class="form-group col-lg-12">
                                 <input type="hidden" name="save" value="contact">
-                                <button type="submit" class="btn btn-default">Submit</button>
+                                <button type="submit" class="btn btn-black">Envoyer</button>
                             </div>
                     </form>
           </div>
