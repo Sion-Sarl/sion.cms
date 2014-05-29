@@ -15,7 +15,7 @@ Route::get('/', function()
 {
 	return View::make('index');
 });
-Route::get('about', function()
+Route::get('service', function()
 {
 	return View::make('about');
 });
@@ -26,13 +26,6 @@ Route::get('blog', function()
 Route::get('contact', function()
 {
 	return View::make('contact');
-});
-Route::get('contact', function()
-{
-	return View::make('contact');
-});
-Route::get('portfolio',function(){
-    return View::make('portfolio');
 });
 Route::post('contact',function(){
     $rules = \Config::get("contact.rule");
@@ -47,4 +40,7 @@ Route::post('contact',function(){
             $message->to('foo@example.com', 'John Smith')->subject('Contact via le site!');
         });
     }
+});
+Route::get('portfolio',function(){
+    return View::make('portfolio');
 });

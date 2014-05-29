@@ -13,11 +13,12 @@
     
     @section("css")
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet" />
 
     <!-- Add custom CSS here -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-sidebar.css" rel="stylesheet" />
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+     <link href="css/clean-car.css" rel="stylesheet" />
     @show
 
 </head>
@@ -29,23 +30,30 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand"><a href="#">Start Bootstrap</a>
+                <li class="sidebar-brand"><a href="#"><img class="img-responsive logo" src="{{asset('img/logo.png')}}" /></a>
                 </li>
-                <li><a href="#">Dashboard</a>
-                </li>
-                <li><a href="#">Shortcuts</a>
-                </li>
-                <li><a href="#">Overview</a>
-                </li>
-                <li><a href="#">Events</a>
-                </li>
-                <li><a href="#">About</a>
-                </li>
-                <li><a href="#">Services</a>
-                </li>
-                <li><a href="#">Contact</a>
-                </li>
+                 @foreach(Config::get("navbar.menu") as $menu)
+                        <li @if(Request::url() == $menu["link"]) class='active' @endif>
+                             <a  href="{{{$menu["link"]}}}">{{{$menu["name"]}}}</a>
+                        </li>
+                 @endforeach
             </ul>
+            <ul class="list-inline sidebar-footer-social">
+                <li><a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                </li>
+                <li><a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                </li>
+                <li><a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                </li>
+                <li><a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                </li>
+                <li><a href="#" class="btn-social btn-outline"><i class="fa fa-fw  fa-pinterest"></i></a>
+                </li>
+
+            </ul>
+            <div class="sidebar-footer">
+                Copyright 2014 CleanCar Réalisé par sion.nc
+            </div>
         </div>
         @show
         <!-- Page content -->
@@ -80,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            @end
+            @show
         </div>
 
     </div>

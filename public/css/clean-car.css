@@ -1,0 +1,100 @@
+/** GENERAL **/
+html{
+    height: 100%;
+}
+body
+{
+    height: 100%;
+
+}
+/** logo **/
+.logo
+{
+    width: 245px;
+}
+/** Extends sidebar **/
+#sidebar-wrapper
+{
+    background: rgb(0,0,0);
+    background: rgba(0,0,0,0.8);
+}
+.sidebar-nav{
+    top: 35%;
+}
+.sidebar-brand
+{
+    position: fixed;
+    top: 10px;
+}
+.sidebar-nav li a
+{
+    font-size: 1.2em;
+    font-weight: 700;
+    text-align: center;
+}
+.sidebar-nav li
+{
+   text-indent: 0px; 
+}
+.sidebar-footer
+{
+    position: absolute;
+    bottom: 0px;
+    background: rgb(0,0,0);
+    background: rgba(0,0,0,0.5);
+    text-align: center;
+    padding: 35px 40px;
+    color: #999999;
+}
+.btn-social {
+    display: inline-block;
+    width: 37px;
+    height: 50px;
+    /* border: 2px solid #fff; */
+    border-radius: 100%;
+    text-align: center;
+    font-size: 20px;
+    line-height: 45px;
+    color: #999999;
+}
+.sidebar-footer-social
+{
+    position: absolute;
+    bottom: 150px;
+}
+/** Extends Page Content  **/
+#wrapper
+{
+    height: 100%;
+}
+#page-content-wrapper
+{
+    height: 100%;
+    background: url("../img/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 150px;
+}
+.box
+{
+    background: rgb(255,255,255);
+    background: rgba(255,255,255,0.3);
+    padding: 20px;
+}
+.page
+{
+    position: absolute;
+    top: 38%;
+    color: #E0E0E0;
+}
+
+/** Responsive  **/
+@media (max-width: 768px) {  
+    /** Extends Page Content  **/
+    #wrapper
+    {
+        background-position-x: 0px;
+    }
+}
