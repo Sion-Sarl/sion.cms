@@ -32,7 +32,7 @@ Route::post('contact',function(){
     $validator = Validator::make(Input::all(), $rules);
     if ($validator->fails())
     {
-        return Redirect::to('contact')->withInput(Input::all())->withErrors($validator)->with('error',"Votre message n'a pas ÈtÈ envoyÈe");
+        return Redirect::to('contact')->withInput(Input::all())->withErrors($validator)->with('error',"Votre message n'a pas √©t√© envoy√©e");
     } 
     else {
         Mail::send('emails.contact',Input::all(), function($message)
@@ -40,7 +40,7 @@ Route::post('contact',function(){
             $name = Input::get("name");
             $message->to( \Config::get("contact.to"), 'Contact')->replyTo(Input::get("email"),$name)->subject('Contact via le site!');
         });
-        return Redirect::to('contact')->with('success',"Votre message a bien ÈtÈ envoyÈe");
+        return Redirect::to('contact')->with('success',"Votre message a bien √©t√© envoy√©e");
     }
 });
 Route::get('portfolio',function(){

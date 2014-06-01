@@ -92,7 +92,7 @@ table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
                       </tr>
                       <tr>
                         <td align="left" valign="top" style="font:Normal 12px Arial, Helvetica, sans-serif; color:#403f3f; line-height:18px; padding: 5px 0px 5px 0px;">
-                        <strong style="font-size: 16px;">TÈlÈphone : </strong> {{@$phone}}
+                        <strong style="font-size: 16px;">T√©l√©phone : </strong> {{@$phone}}
                         </td>
                       </tr>
                       <tr>
@@ -111,8 +111,8 @@ table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
                     <td align="center" valign="top" class="footer-border" bgcolor="#1f1e1e" style=" background:#1f1e1e;border-top: solid 1px #F58220; padding:25px 32px 25px 32px;">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                               <tr>
-                                <td align="center" valign="top" style="font:Normal 12px Arial, Helvetica, sans-serif; color:#ffffff;line-height:18px;">Vous venez de recevoir un email de contact gr‚ce ‡ votre site. <br />
-                                  Si vous rencontrez des problËmes, merci de contacter l'entreprise <a href="mailto:contact@sion.nc">S.I.O.N</a><br />
+                                <td align="center" valign="top" style="font:Normal 12px Arial, Helvetica, sans-serif; color:#ffffff;line-height:18px;">Vous venez de recevoir un email de contact gr√¢ce √† votre site. <br />
+                                  Si vous rencontrez des probl√®mes, merci de contacter l'entreprise <a href="mailto:contact@sion.nc">S.I.O.N</a><br />
                                 </td>
                               </tr>
                           
