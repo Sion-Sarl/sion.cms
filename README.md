@@ -1,7 +1,10 @@
 Installation
 =====================
 
-    composer install
+    1.composer install 
+    2.change the database setting in app/config/database
+    4.make php artisan migrate
+    3.seed the application with AdminSeeder
 
 Set up
 =====================
