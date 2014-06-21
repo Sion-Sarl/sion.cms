@@ -13,5 +13,4 @@ return array(
         'text' => 'required'
     ),
     "to"=>"dartuchiwa@gmail.com"
-    
 );

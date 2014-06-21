@@ -3,19 +3,19 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @section("meta")
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
     <title>Business Casual Template for Bootstrap</title>
     @show
     @section("css")
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" />
 
     <!-- Add custom CSS here -->
-    <link href="css/business-casual.css" rel="stylesheet" />
+    <link href="{{asset('css/business-casual.css')}}" rel="stylesheet" />
     
     @if(Auth::is("admin"))
           <link href="{{asset('packages/sion/admin/css/navbar.css')}}" rel="stylesheet" />

@@ -2,23 +2,19 @@
 return array(
     "menu" => array(
         array(
-            "name" => "Home",
+            "name" => strtoupper("Accueil"),
             "link" =>  url("/")
         ),
         array(
-            "name" => "About",
-            "link" => url("about")
+            "name" => strtoupper("Services"),
+            "link" => url("service")
          ),
         array(
-            "name" => "Blog",
-            "link" => url("blog"),
+            "name" => strtoupper("Realisations"),
+            "link" => url("porfolio"),
         ),
         array(
-            "name" => "Portfolio",
-            "link" => url("portfolio"),
-        ),
-        array(
-            "name" => "Contact",
+            "name" => strtoupper("Contacts"),
             "link" => url("contact")
         )
     )

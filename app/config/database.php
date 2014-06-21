@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'sionnea_cms',
-			'username'  => 'sionnea_cms',
-			'password'  => '6Qu8NbBw@ieJ',
+			'database'  => 'sionnea_cleancar',
+			'username'  => 'sionnea_cleancar',
+			'password'  => 'T^5=%U4n^v*^',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
