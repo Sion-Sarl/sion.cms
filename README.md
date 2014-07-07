@@ -55,6 +55,8 @@ Change the database setting in the app/config/database.php:
 ```
 Migrate the database:
 ```php
+    php artisan migrate --package='sion/taxonomy'
+    php artisan migrate --package='sion/admin'
     php artisan migrate
 ```  
 Seed the database:
