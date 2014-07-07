@@ -1,10 +1,66 @@
-Installation
+SION CMS
 =====================
 
-    1.composer install 
-    2.change the database setting in app/config/database
-    4.make php artisan migrate
-    3.seed the application with AdminSeeder
+Very basic CMS for laravel
+
+Installation
+=====================
+Clone this repository.Then install dependency with composer with
+
+    composer install
+    
+Change the database setting in the app/config/database.php:
+
+```php
+'connections' => array(
+
+		'sqlite' => array(
+			'driver'   => 'sqlite',
+			'database' => __DIR__.'/../database/production.sqlite',
+			'prefix'   => '',
+		),
+
+		'mysql' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'your database name',
+			'username'  => '',
+			'password'  => '',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+
+		'pgsql' => array(
+			'driver'   => 'pgsql',
+			'host'     => 'localhost',
+			'database' => 'database',
+			'username' => 'root',
+			'password' => '',
+			'charset'  => 'utf8',
+			'prefix'   => '',
+			'schema'   => 'public',
+		),
+
+		'sqlsrv' => array(
+			'driver'   => 'sqlsrv',
+			'host'     => 'localhost',
+			'database' => 'database',
+			'username' => 'root',
+			'password' => '',
+			'prefix'   => '',
+		),
+
+	),
+```
+Migrate the database:
+```php
+    php artisan migrate
+```  
+Seed the database:
+```php
+    php artisan db:seed class='AdminSeeder'
+``` 
 
 Set up
 =====================
