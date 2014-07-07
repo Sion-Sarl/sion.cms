@@ -5,7 +5,7 @@ Very basic CMS for laravel
 
 Installation
 =====================
-Clone this repository.Then install dependency with composer with
+Clone this repository.Then install dependency with composer
 
     composer install
     
